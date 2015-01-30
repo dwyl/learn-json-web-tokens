@@ -1,5 +1,5 @@
 var host    = "127.0.0.1";
-var port    = 5000
+var port    = 1337;
 
 var http = require('http');
 var fs = require('fs');
@@ -15,7 +15,12 @@ http.createServer(function (req, res) {
 
     res.writeHead(200, {'Content-Type': 'text/plain'});
     res.end('great success');
-  } else {
+  } else if(req.url.indexOf('/exit') > -1){
+    res.writeHead(404, {'Content-Type': 'text/plain'});
     res.end('bye');
+    console.log('EXIT');
+    process.exit(); // kill the server!
   }
-}).listen(process.env.PORT || port);
+}).listen(process.env.PORT || port, host);
+
+console.log("Visit: http://"+ host +":" + port);
