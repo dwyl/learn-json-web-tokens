@@ -8,13 +8,16 @@ var index = fs.readFileSync(__dirname+'/index.html');
 
 http.createServer(function (req, res) {
   console.log("URL:",req.url);
+
   if(req.url === '/'){
     res.writeHead(200, {'Content-Type': 'text/html'});
     res.end(index);
-  } else if(req.url.indexOf('/auth/') > -1){
 
+  } else if(req.url.indexOf('/auth') > -1){
+    console.log(req)
     res.writeHead(200, {'Content-Type': 'text/plain'});
     res.end('great success');
+
   } else if(req.url.indexOf('/exit') > -1){
     res.writeHead(404, {'Content-Type': 'text/plain'});
     res.end('bye');
