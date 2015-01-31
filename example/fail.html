@@ -5,12 +5,16 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/united/bootstrap.min.css">
 </head>
 <body>
-  <h1> Try again</h1>
-  <form id="login">
-    <input type="username" id="username" placeholder="username"/>
-    <input type="password" id="password" placeholder="********"/>
+  <h1> Try again...</h1>
+  <form action="/auth" method="POST">
+    <label for="exampleInputEmail1">Username</label>
+    <input type="text" name="username" placeholder="username" class="form-control"/>
+    <label for="exampleInputEmail1">Password</label>
+    <input type="password" name="password" placeholder="********" class="form-control"/>
+    <input type="submit" class="btn btn-success" value="login"  />
   </form>
-  <p>Hint:</p>
+
+  <h2>Hint:</h2>
   <ul>
     <li> <b>username</b>: masterbuilder</li>
     <li> <b>password</b>: itsnosecret</li>

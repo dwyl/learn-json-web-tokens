@@ -8,20 +8,41 @@ var jwt  = require('jsonwebtoken');
 // Content
 var index      = fs.readFileSync(__dirname+'/index.html');      // default page
 var restricted = fs.readFileSync(__dirname+'/restricted.html'); // only show if JWT valid
+var fail       = fs.readFileSync(__dirname+'/fail.html');       // auth fail
 
+var usr = { un: 'masterbuilder', pw: 'itsnosecret' };
+
+// create JWT
+
+
+// handle authorisation requests
 function authHandler(req,res){
+  console.log("METHOD: "+req.method)
   if (req.method == 'POST') {
     var body = '';
     req.on('data', function (data) {
       body += data;
     }).on('end', function () {
       var post = qs.parse(body);
-      console.log(post)
+      console.log(post);
+      // authentication success
+      if(post.username && post.username === usr.un && post.password && post.password === usr.pw){
+        // create json token
+        res.writeHead(200, {'Content-Type': 'text/html'});
+        res.end(restricted);
+      }
+
       // use post['blah'], etc.
     });
   }
   // default to fail
+  res.writeHead(401, {'Content-Type': 'text/html'});
+  res.end(fail);
+}
 
+function tokenValid(req) {
+  console.log(req.headers)
+  return true;
 }
 
 
@@ -34,31 +55,30 @@ http.createServer(function (req, res) {
 
   } else if(req.url === '/private') {
 
-
-
-
-    console.log(req.headers)
-    if(req){
-      res.writeHead(200, {'Content-Type': 'text/plain'});
-      res.end('Private');
+    if( tokenValid(req) ) {
+      res.writeHead(200, {'Content-Type': 'text/html'});
+      res.end(restricted);
     } else {
-      console.log('failed');
+      res.writeHead(404, {'Content-Type': 'text/plain'});
+      console.log(index);
     }
 
   } else if(req.url === '/auth') {
 
     authHandler(req,res);
 
+    // var token = jwt.sign({ key: 'val' }, 'secret');
+    // console.log(token);
+    // res.writeHead(200, {'Content-Type': 'text/plain'});
+    // res.end('great success');
 
-    var token = jwt.sign({ key: 'val' }, 'secret');
-    console.log(token);
+  } else if(req.url === '/logout') {
     res.writeHead(200, {'Content-Type': 'text/plain'});
-    res.end('great success');
+    res.end('Logged Out!');
 
   } else if(req.url === '/exit') {
     res.writeHead(404, {'Content-Type': 'text/plain'});
     res.end('bye');
-    // console.log('EXIT');
     process.exit(); // kill the server!
 
   } else {
