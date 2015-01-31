@@ -1,7 +1,6 @@
 var test    = require('tape');
 var request = require('request');
 var qs      = require('querystring');
-var token   = null; // starts out empty
 var host    = "http://127.0.0.1:";
 var port    = 1337;
 
@@ -21,18 +20,43 @@ setTimeout(function() { // only run tests once child_process has started
   test("CONNECT to localhost "+host+":"+port, function (t) {
     request(host+port ,function (err, res, body) {
       // console.log(err);
-      t.equal(err, null, "✓ No Errors Connecting");
+      t.equal(err, null, "No Errors Connecting");
       // console.log(res);
-      t.equal(res.statusCode, 200, "✓ Status 200");
+      t.equal(res.statusCode, 200, "Status 200");
       t.end();
     });
   });
 
   // attempt to access content before being authenticated
+  test("Authenticate "+host+port+"/auth (incorrect username/password should fail)", function (t) {
 
+    var form = {
+      username: 'lordbusiness',
+      password: 'kragle',
+    };
 
+    var formData      = qs.stringify(form);
+    var contentLength = formData.length;
 
-  // attempt to authenticate
+    var options = {
+      headers: {
+        'Content-Length': contentLength,
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'user-agent': 'Mozilla/5.0'
+      },
+      uri: host+port+"/auth",
+      body: formData,
+      method: 'POST'
+    }
+
+    request.post(options ,function (err, res, body) {
+      t.equal(res.statusCode, 401, "Cannot authenticate (incorrect un/pw)");
+      t.end();
+    });
+  });
+
+  var token   = null; // starts out empty && Yes, GLOBAL (its a test!)
+
   test("Authenticate "+host+port+"/auth", function (t) {
 
     var form = {
@@ -55,9 +79,26 @@ setTimeout(function() { // only run tests once child_process has started
     }
 
     request.post(options ,function (err, res, body) {
-      console.log(body);
-      // t.equal(body, 'bye', "✓ Exit server");
-      t.equal(res.statusCode, 200, "✓ Authenticated");
+      token = res.headers['x-access-token']; // save the token for later
+      t.equal(res.statusCode, 200, "Authenticated");
+      t.end();
+    });
+  });
+
+
+  test("Access restricted content: "+host+port+"/private", function (t) {
+
+    var options = {
+      headers: {
+        'x-access-token': token,
+        'user-agent': 'Mozilla/5.0'
+      },
+      uri: host+port+"/private",
+      method: 'GET'
+    }
+
+    request(options ,function (err, res, body) {
+      t.equal(res.statusCode, 200, "Private content accessed");
       t.end();
     });
   });
@@ -67,13 +108,13 @@ setTimeout(function() { // only run tests once child_process has started
   test("EXIT "+host+port+"/exit", function (t) {
     request(host+port+"/exit" ,function (err, res, body) {
       // console.log(body);
-      t.equal(body, 'bye', "✓ Exit server");
-      t.equal(res.statusCode, 404, "✓ End tests!");
+      t.equal(body, 'bye', "Exit server");
+      t.equal(res.statusCode, 404, "End tests!");
       t.end();
     });
   });
 
-}, 200); // give the server time to start
+}, 70); // give the server time to start
 
 
 process.on('uncaughtException', function(err) {

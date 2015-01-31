@@ -10,13 +10,31 @@ var index      = fs.readFileSync(__dirname+'/index.html');      // default page
 var restricted = fs.readFileSync(__dirname+'/restricted.html'); // only show if JWT valid
 var fail       = fs.readFileSync(__dirname+'/fail.html');       // auth fail
 
-var usr = { un: 'masterbuilder', pw: 'itsnosecret' };
+// secret
+var secret = "CHANGE_THIS_TO_SOMETHING_RANDOM";
 
-// create JWT
+// show fail page (login)
+function authFail(res) {
+  res.writeHead(401, {'Content-Type': 'text/html'});
+  res.end(fail);
+}
 
+function authSuccess(req, res) {
+  // create JWT
+  var token = jwt.sign({ auth: 'magic', agent: req.headers['user-agent'] }, secret);
+
+  res.writeHead(200, {
+    'Content-Type': 'text/html',
+    'x-access-token': token
+  });
+  res.end(restricted);
+}
 
 // handle authorisation requests
 function authHandler(req,res){
+  // lookup person in database
+  var usr = { un: 'masterbuilder', pw: 'itsnosecret' };
+
   console.log("METHOD: "+req.method)
   if (req.method == 'POST') {
     var body = '';
@@ -24,24 +42,25 @@ function authHandler(req,res){
       body += data;
     }).on('end', function () {
       var post = qs.parse(body);
-      console.log(post);
       // authentication success
       if(post.username && post.username === usr.un && post.password && post.password === usr.pw){
-        // create json token
-        res.writeHead(200, {'Content-Type': 'text/html'});
-        res.end(restricted);
+        authSuccess(req, res);
+      } else {
+        return authFail(res);
       }
-
-      // use post['blah'], etc.
     });
+  } else {
+    return authFail(res);
   }
-  // default to fail
-  res.writeHead(401, {'Content-Type': 'text/html'});
-  res.end(fail);
 }
 
-function tokenValid(req) {
+
+
+function tokenValid(req, res) {
   console.log(req.headers)
+  var token = req.headers['x-access-token'];
+  var decoded = jwt.verify(token, secret);
+  console.log(decoded);
   return true;
 }
 
@@ -55,22 +74,16 @@ http.createServer(function (req, res) {
 
   } else if(req.url === '/private') {
 
-    if( tokenValid(req) ) {
+    if( tokenValid(req, res) ) {
       res.writeHead(200, {'Content-Type': 'text/html'});
       res.end(restricted);
     } else {
-      res.writeHead(404, {'Content-Type': 'text/plain'});
-      console.log(index);
+      fail(res);
     }
 
   } else if(req.url === '/auth') {
-
+    console.log(req.headers);
     authHandler(req,res);
-
-    // var token = jwt.sign({ key: 'val' }, 'secret');
-    // console.log(token);
-    // res.writeHead(200, {'Content-Type': 'text/plain'});
-    // res.end('great success');
 
   } else if(req.url === '/logout') {
     res.writeHead(200, {'Content-Type': 'text/plain'});
