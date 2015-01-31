@@ -4,10 +4,11 @@ var qs      = require('querystring');
 var host    = "http://127.0.0.1:";
 var port    = 1337;
 
+// var server = require('../server');
 
 var exec = require('child_process').exec;
 exec('node ./example/server.js', function(error, stdout, stderr) {
-  console.log(stdout);
+  // console.log(stdout);
   // console.log('stderr: ', stderr);
   if (error !== null) {
     console.log('exec error: ', error);
@@ -17,10 +18,10 @@ exec('node ./example/server.js', function(error, stdout, stderr) {
 
 setTimeout(function() { // only run tests once child_process has started
 
-  test("CONNECT to localhost "+host+":"+port, function (t) {
+  test("Connect to localhost "+host+":"+port, function (t) {
     request(host+port ,function (err, res, body) {
       // console.log(err);
-      t.equal(err, null, "No Errors Connecting");
+      // t.equal(err, null, "No Errors Connecting");
       // console.log(res);
       t.equal(res.statusCode, 200, "Status 200");
       t.end();
@@ -55,6 +56,24 @@ setTimeout(function() { // only run tests once child_process has started
     });
   });
 
+  test("Attempt to access restricted content: "+host+port+"/private without supplying a valid token!", function (t) {
+
+    var options = {
+      headers: {
+        'x-access-token': 'invalid',
+        'user-agent': 'Mozilla/5.0'
+      },
+      uri: host+port+"/private",
+      method: 'GET'
+    }
+
+    request(options ,function (err, res, body) {
+      t.equal(res.statusCode, 401, "Private content access denied!");
+      t.end();
+    });
+  });
+
+
   var token   = null; // starts out empty && Yes, GLOBAL (its a test!)
 
   test("Authenticate "+host+port+"/auth", function (t) {
@@ -84,7 +103,6 @@ setTimeout(function() { // only run tests once child_process has started
       t.end();
     });
   });
-
 
   test("Access restricted content: "+host+port+"/private", function (t) {
 

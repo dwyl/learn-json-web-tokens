@@ -31,11 +31,12 @@ function authSuccess(req, res) {
   res.end(restricted);
 }
 
+// lookup person in "database"
+var db = { un: 'masterbuilder', pw: 'itsnosecret' };
+
 // handle authorisation requests
 function authHandler(req,res){
-  // lookup person in database
-  var usr = { un: 'masterbuilder', pw: 'itsnosecret' };
-
+  // >> lookup the actual user in our database in "real" app
   console.log("METHOD: "+req.method)
   if (req.method == 'POST') {
     var body = '';
@@ -44,7 +45,7 @@ function authHandler(req,res){
     }).on('end', function () {
       var post = qs.parse(body);
       // authentication success
-      if(post.username && post.username === usr.un && post.password && post.password === usr.pw){
+      if(post.username && post.username === db.un && post.password && post.password === db.pw){
         authSuccess(req, res);
       } else {
         return authFail(res);
@@ -58,9 +59,42 @@ function authHandler(req,res){
 function tokenValid(req, res) {
   console.log(req.headers)
   var token = req.headers['x-access-token'];
-  var decoded = jwt.verify(token, secret);
-  console.log(decoded);
-  return true;
+  jwt.verify(token, secret, function(err, decoded){
+    if(err || !decoded || decoded.auth !== 'magic') {
+      return authFail(res);
+    } else {
+      return privado(res, token);
+    }
+  });
+}
+
+function privado(res, token) {
+  res.writeHead(200, {
+    'Content-Type': 'text/html',
+    'x-access-token': token
+  });
+  return res.end(restricted);
+}
+
+function exit(res) {
+  res.writeHead(404, {'Content-Type': 'text/plain'});
+  res.end('bye');
+  process.exit(); // kill the server!
+}
+
+function notFound(res) {
+  res.writeHead(404, {'Content-Type': 'text/plain'});
+  res.end('Not Found');
+}
+
+function home(res) {
+  res.writeHead(200, {'Content-Type': 'text/html'});
+  res.end(index);
+}
+
+function logout(res) {
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.end('Logged Out!');
 }
 
 module.exports = {
@@ -68,6 +102,7 @@ module.exports = {
   success : authSuccess,
   handler : authHandler,
   validate : tokenValid,
-  index: index,
-  restricted: restricted
+  notFound : notFound,
+  exit: exit,
+  home: home
 }
