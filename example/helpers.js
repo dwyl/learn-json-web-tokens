@@ -3,9 +3,9 @@ var fs   = require('fs');
 var jwt  = require('jsonwebtoken');
 
 // Content
-var index      = fs.readFileSync(__dirname+'/index.html');      // default page
-var restricted = fs.readFileSync(__dirname+'/restricted.html'); // only show if JWT valid
-var fail       = fs.readFileSync(__dirname+'/fail.html');       // auth fail
+var index      = fs.readFileSync(__dirname+'/views/index.html');      // default page
+var restricted = fs.readFileSync(__dirname+'/views/restricted.html'); // only show if JWT valid
+var fail       = fs.readFileSync(__dirname+'/views/fail.html');       // auth fail
 
 // secret
 var secret = "CHANGE_THIS_TO_SOMETHING_RANDOM";
@@ -28,7 +28,7 @@ function authSuccess(req, res) {
     'Content-Type': 'text/html',
     'x-access-token': token
   });
-  res.end(restricted);
+  return res.end(restricted);
 }
 
 // lookup person in "database"
@@ -84,25 +84,26 @@ function exit(res) {
 
 function notFound(res) {
   res.writeHead(404, {'Content-Type': 'text/plain'});
-  res.end('Not Found');
+  return res.end('Not Found');
 }
 
 function home(res) {
   res.writeHead(200, {'Content-Type': 'text/html'});
-  res.end(index);
+  return res.end(index);
 }
 
 function logout(res) {
+  // "destroy" (invalidate) the token
   res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end('Logged Out!');
+  return res.end('Logged Out!');
 }
 
 module.exports = {
   fail : authFail,
-  success : authSuccess,
-  handler : authHandler,
-  validate : tokenValid,
-  notFound : notFound,
   exit: exit,
-  home: home
+  home: home,
+  handler : authHandler,
+  notFound : notFound,
+  success : authSuccess,
+  validate : tokenValid
 }
