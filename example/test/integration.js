@@ -8,8 +8,8 @@ var port    = Math.floor(Math.random() * 9000) + 1000;
 
 var exec = require('child_process').exec;
 exec('PORT='+port +' node ./example/server.js', function(error, stdout, stderr) {
-  // console.log(stdout);
-  // console.log('stderr: ', stderr);
+  // console.log(stdout);             // uncomment for console.log
+  // console.log('stderr: ', stderr); // uncomment for errors
   if (error !== null) {
     console.log('exec error: ', error);
   }
