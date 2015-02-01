@@ -1,8 +1,8 @@
-# Learn JSON Web Token (JWT)
+# Learn to use JSON Web Tokens (JWT) for Authentication
 
 ![dilbert fixed the internet](http://i.imgur.com/cNElVof.jpg)
 
-Learn how to use JSON Web Token (JWT) to secure your Web App!
+Learn how to use JSON Web Token (JWT) to secure your Web and/or Mobile Application!
 
 ## *Why*?
 
@@ -47,7 +47,7 @@ based on the header (part one) and the body (part two)
 
 ### What are "Claims"?
 
-Claims are the values
+Claims are the predefined **keys** and their **values**:
 
 + **iss**: issuer of the token
 + **exp**: the expiration timestamp (reject tokens which have expired)
@@ -59,12 +59,32 @@ Claims are the values
 
 See: http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html#RegisteredClaimName
 
-## Issues
+# Example
+
+Lets get stuck in with a simple example:
+
+## Server
+
+
+
+
+## Issues with Tokens?
 
 ### How do we *Invalidate* sessions?
 
 The person using your app has their **device** (phone/tablet/laptop)
-***stolen***
+***stolen*** how do you invalidate the token they were using?
+
+The idea behind JWT is that the tokens are ***stateless***
+they can be computed
+
+
+### Returning Visitor (*no State Preservation between sessions*)
+
+Cookies are stored on the client and sent by the browser to the server
+on every request. Because the Which means if the person *closes* their browser
+they do not loose their session cookie (can re-open where they left off without
+  having to log-in again)
 
 
 
@@ -80,7 +100,7 @@ https://scotch.io/tutorials/the-anatomy-of-a-json-web-token
 - Discussion: https://ask.auth0.com/c/jwt
 
 
-## Which Node Module?
+## Which Node.js Module?
 
 A search for "**JSON Web Token**" on NPM:
 https://www.npmjs.com/search?q=json+web+token yields ***many*** results!
@@ -92,7 +112,7 @@ made by our friends [@auth0](https://twitter.com/auth0)
 ([the identity/authentication experts](https://auth0.com/about)):
 - https://github.com/auth0/node-jsonwebtoken  
 Which in turn uses:
-https://github.com/brianloveswords/node-jws
+https://github.com/brianloveswords/node-jws  
 [![NPM][jsonwebtoken-icon] ][jsonwebtoken-url]
 
 
@@ -104,18 +124,18 @@ http://stackoverflow.com/questions/20228572/passport-local-with-node-jwt-simple
 https://auth0.com/blog/2014/12/02/using-json-web-tokens-as-api-keys/
 + Information Security discussion:
 http://security.stackexchange.com/questions/51294/json-web-tokens-jwt-as-user-identification-and-authentication-tokens
++ Using JWT with node.js (express + backbone):
+http://www.sitepoint.com/using-json-web-tokens-node-js/
 + Token-based Authentication with Socket.IO
 https://auth0.com/blog/2014/01/15/auth-with-socket-io/
 + JWT Auth *discussion* on Hacker News:
 https://news.ycombinator.com/item?id=7084435
-- Spec but nicer:
++ The Spec but nicer:
 http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html
-- Claims-based authentication:
++ Extended (Wiki) article on Claims-based authentication:
 http://en.wikipedia.org/wiki/Claims-based_identity
-- Securing Requests with JWT:
++ Securing Requests with JWT:
 http://websec.io/2014/08/04/Securing-Requests-with-JWT.html
-- Using JWT with node.js (express + backbone):
-http://www.sitepoint.com/using-json-web-tokens-node-js/
 
 [jsonwebtoken-icon]: https://nodei.co/npm/jsonwebtoken.png?downloads=true
 [jsonwebtoken-url]: https://npmjs.org/package/jsonwebtoken
