@@ -4,8 +4,11 @@
   "description": "A JSON Web Tokens Tutorial to secure your node.js apps!",
   "main": "server.js",
   "scripts": {
-    "test": "tape",
-    "start": "node server.js"
+    "functional":"./node_modules/.bin/istanbul cover ./node_modules/tape/bin/tape ./example/test/functional.js | node_modules/tap-spec/bin/cmd.js",
+    "coverage": "./node_modules/.bin/istanbul cover ./node_modules/tape/bin/tape ./test/functional.js && ./node_modules/.bin/istanbul check-coverage --statements 100 --functions 100 --lines 100 --branches 100",
+    "test": "./node_modules/tape/bin/tape ./example/test/integration.js | node_modules/tap-spec/bin/cmd.js",
+    "start": "node ./example/server.js",
+    "codeclimate": "CODECLIMATE_REPO_TOKEN=7d6a9a77660c9a52f34d752740c30a5e1617e672ff6fdb99c92a63b2f67787d0 ./node_modules/codeclimate-test-reporter/bin/codeclimate.js < ./coverage/lcov.info"
   },
   "repository": {
     "type": "git",
@@ -26,5 +29,13 @@
   "homepage": "https://github.com/nelsonic/learn-json-web-tokens",
   "dependencies": {
     "jsonwebtoken": "^3.2.2"
+  },
+  "devDependencies": {
+    "request": "^2.53.0",
+    "tap-spec": "^2.2.1",
+    "tape": "^3.5.0"
+  },
+  "engines": {
+    "node": ">= 0.8"
   }
 }
