@@ -1,29 +1,38 @@
 var qs   = require('querystring');
 var fs   = require('fs');
+var path = require('path');
 var jwt  = require('jsonwebtoken');
+var secret = "CHANGE_THIS_TO_SOMETHING_RANDOM"; // super secret
 
+
+function loadView(view) {
+  var filepath = path.resolve(__dirname + '../../views/' + view + '.html');
+  return fs.readFileSync(filepath).toString();
+}
 // Content
-var index      = fs.readFileSync(__dirname+'/views/index.html');      // default page
-var restricted = fs.readFileSync(__dirname+'/views/restricted.html'); // only show if JWT valid
-var fail       = fs.readFileSync(__dirname+'/views/fail.html');       // auth fail
-
-// secret
-var secret = "CHANGE_THIS_TO_SOMETHING_RANDOM";
+var index      = loadView('index');      // default page
+var restricted = loadView('restricted'); // only show if JWT valid
+var fail       = loadView('fail');       // auth fail
 
 // show fail page (login)
 function authFail(res) {
   res.writeHead(401, {'Content-Type': 'text/html'});
-  res.end(fail);
+  return res.end(fail);
 }
 
-function authSuccess(req, res) {
+function generateToken(req){
   // create JWT
   var token = jwt.sign({
     auth:  'magic',
     agent: req.headers['user-agent'],
     exp:   new Date().getTime() + 7*24*60*60*1000 // JS timestamp is ms...
   }, secret);
+  return token;
+}
 
+function authSuccess(req, res) {
+  // console.log(' ---> authSuccess Called');
+  var token = generateToken(req);
   res.writeHead(200, {
     'Content-Type': 'text/html',
     'x-access-token': token
@@ -37,16 +46,15 @@ var db = { un: 'masterbuilder', pw: 'itsnosecret' };
 // handle authorisation requests
 function authHandler(req,res){
   // >> lookup the actual user in our database in "real" app
-  console.log("METHOD: "+req.method)
+  // console.log("METHOD: "+req.method)
   if (req.method == 'POST') {
     var body = '';
     req.on('data', function (data) {
       body += data;
     }).on('end', function () {
       var post = qs.parse(body);
-      // authentication success
-      if(post.username && post.username === db.un && post.password && post.password === db.pw){
-        authSuccess(req, res);
+      if(post.username && post.username === db.un && post.password && post.password === db.pw) {
+        return authSuccess(req, res);
       } else {
         return authFail(res);
       }
@@ -56,16 +64,19 @@ function authHandler(req,res){
   }
 }
 
-function tokenValid(req, res) {
-  console.log(req.headers)
+function validate(req, res) {
+
   var token = req.headers['x-access-token'];
-  jwt.verify(token, secret, function(err, decoded){
-    if(err || !decoded || decoded.auth !== 'magic') {
-      return authFail(res);
-    } else {
-      return privado(res, token);
-    }
-  });
+  try {
+    var decoded = jwt.verify(token, secret);
+  } catch (e) {
+    return authFail(res);
+  }
+  if(!decoded || decoded.auth !== 'magic') {
+    return authFail(res);
+  } else {
+    return privado(res, token);
+  }
 }
 
 function privado(res, token) {
@@ -103,7 +114,9 @@ module.exports = {
   exit: exit,
   home: home,
   handler : authHandler,
+  logout : logout,
   notFound : notFound,
   success : authSuccess,
-  validate : tokenValid
+  validate : validate,
+  view : loadView
 }
