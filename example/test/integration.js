@@ -2,12 +2,12 @@ var test    = require('tape');
 var request = require('request');
 var qs      = require('querystring');
 var host    = "http://127.0.0.1:";
-var port    = 1337;
+var port    = Math.floor(Math.random() * 9000) + 1000;
 
 // var server = require('../server');
 
 var exec = require('child_process').exec;
-exec('node ./example/server.js', function(error, stdout, stderr) {
+exec('PORT='+port +' node ./example/server.js', function(error, stdout, stderr) {
   // console.log(stdout);
   // console.log('stderr: ', stderr);
   if (error !== null) {
