@@ -23,10 +23,15 @@ Do you want any (*all*) of these:
 
 ###  In *English*
 
-Instead of using a browser cookie to authenticate people in your (web) app,
+*Instead* of using a browser **cookie** to authenticate people in your (web) app,
 you put a standard-based token in the **header** or **url** of the page
 (or API endpoint) which proves the user has logged in and is allowed to
 access the desired content.
+
+example: `https://www.yoursite.com/private-content/?jwt=eyJ0eXAiOiJKV1Qi.eyJrZXkiOi.eUiabuiKv`
+
+**Note**: if this does not *look* "secure" to you,
+scroll down to the "***issues***"" section.
 
 ### What does a JWT *Look* Like?
 
@@ -74,12 +79,20 @@ Lets get stuck in with a simple example.
 
 ## Server
 
-Using a the *core* **node.js http** server we need
+Using a the *core* **node.js http** server we need a few methods
+in order to use
+
+
+## TRY it: https://jwt.herokuapp.com/
 
 
 ## Issues with Tokens?
 
-### How do we *Invalidate* sessions?
+### Q: If I put the JWT in the *URL* or *Header* is it *secure*?
+
+Good question!
+
+### Q: How do we *Invalidate* sessions?
 
 The person using your app has their **device** (phone/tablet/laptop)
 ***stolen*** how do you invalidate the token they were using?
@@ -88,14 +101,12 @@ The idea behind JWT is that the tokens are ***stateless***
 they can be computed
 
 
-### Returning Visitor (*no State Preservation between sessions*)
+### Q: Returning Visitor (*no State Preservation between sessions*)
 
 Cookies are stored on the client and sent by the browser to the server
 on every request. Because the Which means if the person *closes* their browser
 they do not loose their session cookie (can re-open where they left off without
   having to log-in again)
-
-
 
 ## Background Reading
 
