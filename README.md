@@ -4,6 +4,10 @@
 
 Learn how to use JSON Web Token (JWT) to *secure* your Web and/or Mobile Application!
 
+[![Node.js Version][node-version-image]][node-version-url] [![Build Status][travis-image]][travis-url] [![Test Coverage][coveralls-image]][coveralls-url] [![Dependency Status](https://david-dm.org/nelsonic/esta.svg)](https://david-dm.org/nelsonic/esta)
+[![Code Climate](https://codeclimate.com/github/nelsonic/esta/badges/gpa.svg)](https://codeclimate.com/github/nelsonic/esta)
+
+
 ## *Why*?
 
 Do you want any (*all*) of these:
@@ -159,3 +163,15 @@ http://websec.io/2014/08/04/Securing-Requests-with-JWT.html
 
 [jsonwebtoken-icon]: https://nodei.co/npm/jsonwebtoken.png?downloads=true
 [jsonwebtoken-url]: https://npmjs.org/package/jsonwebtoken
+[npm-image]: https://img.shields.io/npm/v/esta.svg?style=flat
+[npm-url]: https://npmjs.org/package/esta
+[node-version-image]: https://img.shields.io/node/v/esta.svg?style=flat
+[node-version-url]: http://nodejs.org/download/
+[downloads-image]: https://img.shields.io/npm/dm/esta.svg?style=flat
+[downloads-url]: https://npmjs.org/package/esta
+[travis-image]: https://img.shields.io/travis/nelsonic/esta.svg?style=flat
+[travis-url]: https://travis-ci.org/nelsonic/esta
+[coveralls-image]: https://img.shields.io/coveralls/nelsonic/esta.svg?style=flat
+[coveralls-url]: https://coveralls.io/r/nelsonic/esta?branch=master
+[dependencies-url]: https://david-dm.org/nelsonic/esta
+[dependencies-image]: https://david-dm.org/nelsonic/esta.svg
