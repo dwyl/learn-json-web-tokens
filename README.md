@@ -2,15 +2,17 @@
 
 ![dilbert fixed the internet](http://i.imgur.com/cNElVof.jpg)
 
-Learn how to use JSON Web Token (JWT) to secure your Web and/or Mobile Application!
+Learn how to use JSON Web Token (JWT) to *secure* your Web and/or Mobile Application!
 
 ## *Why*?
 
 Do you want any (*all*) of these:
 
-+ [x] Secure your website/app without cookies.
-+ [x] Stateless authentication (simplifies [horizontal scaling](http://en.wikipedia.org/wiki/Scalability#Horizontal_and_vertical_scaling))
-+ [x] Prevent (mitigate) Cross-Site Request Forgery (**CSRF**) attacks.
++ [x] Secure your website/app ***without cookies***.
+  + [x] No cookies means **no *annoying* cookie message** on your website
+  (see: [e-Privacy Directive](https://ico.org.uk/for-organisations/guide-to-pecr/cookies/))
++ [x] ***Stateless*** authentication (simplifies [***horizontal scaling***](http://en.wikipedia.org/wiki/Scalability#Horizontal_and_vertical_scaling))
++ [x] ***Prevent*** (mitigate) Cross-Site Request Forgery (**CSRF**) attacks.
 
 ## What?
 
@@ -19,11 +21,18 @@ Do you want any (*all*) of these:
 > The claims in a JWT are encoded as a JSON object that is digitally
 > signed using JSON Web Signature (JWS)*.  ~ IETF
 
+###  In *English*
+
+Instead of using a browser cookie to authenticate people in your (web) app,
+you put a standard-based token in the **header** or **url** of the page
+(or API endpoint) which proves the user has logged in and is allowed to
+access the desired content.
 
 ### What does a JWT *Look* Like?
 
+Tokens are a string of "url safe" characters which *encode* information.
 Tokens have **three components** (separated by periods)
-(shown here on
+(shown here on multiple lines for *readabilyt* but used as a single string of text)
 
 ```js
 eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9           // header
@@ -61,11 +70,11 @@ See: http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html#Registere
 
 # Example
 
-Lets get stuck in with a simple example:
+Lets get stuck in with a simple example.
 
 ## Server
 
-
+Using a the *core* **node.js http** server we need
 
 
 ## Issues with Tokens?
