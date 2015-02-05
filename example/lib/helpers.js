@@ -2,7 +2,7 @@ var qs   = require('querystring');
 var fs   = require('fs');
 var path = require('path');
 var jwt  = require('jsonwebtoken');
-var secret = "CHANGE_THIS_TO_SOMETHING_RANDOM"; // super secret
+var secret = process.env.JWT_SECRET || "CHANGE_THIS_TO_SOMETHING_RANDOM"; // super secret
 
 
 function loadView(view) {
@@ -20,8 +20,8 @@ function authFail(res) {
   return res.end(fail);
 }
 
+// create JWT
 function generateToken(req){
-  // create JWT
   var token = jwt.sign({
     auth:  'magic',
     agent: req.headers['user-agent'],
@@ -65,7 +65,6 @@ function authHandler(req,res){
 }
 
 function validate(req, res) {
-
   var token = req.headers['x-access-token'];
   try {
     var decoded = jwt.verify(token, secret);

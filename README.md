@@ -86,12 +86,62 @@ Lets get stuck in with a simple example.
 
 ## Server
 
-Using the *core* **node.js http** server we create 4 endpoints:
+Using the *core* **node.js http** server we create 4 endpoints in **/example/server.js**:
 
 1. **/home** : home page (not essential but its where our **login** form is.)
 2. **/auth** : *authenticate* the visitor (returns error + login form if failed)
 3. **/private** : our restricted content ***login require*** (valid session token) to see this page.
 4. **/logout** : invalidates the token and logout the user (prevent from re-using old token)
+
+We have *deliberately* made **server.js** as simple as possible for:
+
++ Readability
++ Maintainability
++ Testability (all helper/handler methods are tested separately)
+
+## Helper Methods
+
+All the helper methods are kept in **/example/lib/helpers.js**
+The two most interesting/relevant methods are:
+
+```javascript
+// generate the JWT
+function generateToken(req){
+  var token = jwt.sign({
+    auth:  'magic',
+    agent: req.headers['user-agent'],
+    exp:   new Date().getTime() + 7*24*60*60*1000 // + 1 week (JS timestamp is ms...)
+  }, secret);  // secret is defined in the environment variable JWT_SECRET
+  return token;
+}
+```
+Which generates our token after the user has authenticated
+
+and
+
+```javascript
+// validate the token supplied in request header
+function validate(req, res) {
+  var token = req.headers['x-access-token'];
+  try {
+    var decoded = jwt.verify(token, secret);
+  } catch (e) {
+    return authFail(res);
+  }
+  if(!decoded || decoded.auth !== 'magic') {
+    return authFail(res);
+  } else {
+    return privado(res, token);
+  }
+}
+```
+
+**Note**: *Yes*, *both* these methods are ***synchronous***.
+But given that they do not require any I/O or Network requests,
+its safe to compute them synchronously.
+
+
+## Testing
 
 
 
