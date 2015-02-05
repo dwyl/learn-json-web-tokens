@@ -4,7 +4,7 @@
 
 Learn how to use JSON Web Token (JWT) to *secure* your Web and/or Mobile Application!
 
-[![Node.js Version][node-version-image]][node-version-url] [![Build Status][travis-image]][travis-url] [![Test Coverage][coveralls-image]][coveralls-url] [![Dependency Status](https://david-dm.org/docdis/learn-json-web-tokens.svg)](https://david-dm.org/docdis/learn-json-web-tokens)
+[![Node.js Version][node-version-image]][node-version-url] [![Build Status][travis-image]][travis-url] [![Code Climate](https://codeclimate.com/github/docdis/learn-json-web-tokens/badges/gpa.svg)](https://codeclimate.com/github/docdis/learn-json-web-tokens) [![Dependency Status](https://david-dm.org/docdis/learn-json-web-tokens.svg)](https://david-dm.org/docdis/learn-json-web-tokens)
 [![Code Climate](https://codeclimate.com/github/docdis/learn-json-web-tokens/badges/gpa.svg)](https://codeclimate.com/github/docdis/learn-json-web-tokens)
 
 
@@ -115,7 +115,8 @@ function generateToken(req){
   return token;
 }
 ```
-Which generates our token after the user has authenticated
+Which ***generates*** our JWT token when the user authenticates.  
+(This is then sent back to the client in the **x-access-token** **header** for use in subsequent requests)
 
 and
 
@@ -136,17 +137,25 @@ function validate(req, res) {
 }
 ```
 
-**Note**: *Yes*, *both* these methods are ***synchronous***.
-But given that they do not require any I/O or Network requests,
-its safe to compute them synchronously.
+***validate*** checks the JWT supplied by the client is valid,
+shows private ("privado") content to the requestor if valid
+and renders the **authFail** ***error*** page if its not.
 
+**Note**: *Yes*, *both* these methods are ***synchronous***.
+But, given that neither of these methods require *any* **I/O** *or* **Network** requests,
+its safe to compute them synchronously.
 
 ## Testing
 
+You may have noticed the [![Build Status][travis-image]][travis-url] badge at the *start* of this tutorial.
+is a sign the author(s) are not just *cobbling* code together.  
+The tests are in: **/example/test**
 
+1. /example/test/**functional.js** - *exercises* all the **helper methods** we created in /example/lib/**helpers.js**
+[![Test Coverage](https://codeclimate.com/github/docdis/learn-json-web-tokens/badges/coverage.svg)](https://codeclimate.com/github/docdis/learn-json-web-tokens)
+2. /example/test/**integration.js** - simulates the requests a *user* would send to the server and tests the responses.
 
-
-
+- - -
 
 ## Issues with Tokens?
 
