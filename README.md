@@ -4,8 +4,8 @@
 
 Learn how to use JSON Web Token (JWT) to *secure* your Web and/or Mobile Application!
 
-[![Node.js Version][node-version-image]][node-version-url] [![Build Status][travis-image]][travis-url] [![Test Coverage][coveralls-image]][coveralls-url] [![Dependency Status](https://david-dm.org/nelsonic/esta.svg)](https://david-dm.org/nelsonic/esta)
-[![Code Climate](https://codeclimate.com/github/nelsonic/esta/badges/gpa.svg)](https://codeclimate.com/github/nelsonic/esta)
+[![Node.js Version][node-version-image]][node-version-url] [![Build Status][travis-image]][travis-url] [![Test Coverage][coveralls-image]][coveralls-url] [![Dependency Status](https://david-dm.org/docdis/learn-json-web-tokens.svg)](https://david-dm.org/docdis/learn-json-web-tokens)
+[![Code Climate](https://codeclimate.com/github/docdis/learn-json-web-tokens/badges/gpa.svg)](https://codeclimate.com/github/docdis/learn-json-web-tokens)
 
 
 ## *Why*?
@@ -41,7 +41,7 @@ scroll down to the "***issues***"" section.
 
 Tokens are a string of "url safe" characters which *encode* information.
 Tokens have **three components** (separated by periods)
-(shown here on multiple lines for *readabilyt* but used as a single string of text)
+(shown here on multiple lines for *readability* but used as a single string of text)
 
 ```js
 eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9           // header
@@ -80,21 +80,31 @@ See: http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html#Registere
 # Example
 
 Lets get stuck in with a simple example.
+(the *full* source is in the **/example** directory)
+
+> TRY it: https://jwt.herokuapp.com/
 
 ## Server
 
-Using a the *core* **node.js http** server we need a few methods
-in order to use
+Using the *core* **node.js http** server we create 4 endpoints:
+
+1. **/home** : home page (not essential but its where our **login** form is.)
+2. **/auth** : *authenticate* the visitor (returns error + login form if failed)
+3. **/private** : our restricted content ***login require*** (valid session token) to see this page.
+4. **/logout** : invalidates the token and logout the user (prevent from re-using old token)
 
 
-## TRY it: https://jwt.herokuapp.com/
+
+
 
 
 ## Issues with Tokens?
 
 ### Q: If I put the JWT in the *URL* or *Header* is it *secure*?
 
-Good question!
+Good question! The *quick* **answer** is: ***No***.  
+Unless you are using SSL/TLS (http**s** in your url) to encrypt the connection,
+sending the Token [***in-the-clear***](http://en.wikipedia.org/wiki/Plaintext)
 
 ### Q: How do we *Invalidate* sessions?
 
@@ -169,9 +179,9 @@ http://websec.io/2014/08/04/Securing-Requests-with-JWT.html
 [node-version-url]: http://nodejs.org/download/
 [downloads-image]: https://img.shields.io/npm/dm/esta.svg?style=flat
 [downloads-url]: https://npmjs.org/package/esta
-[travis-image]: https://img.shields.io/travis/nelsonic/esta.svg?style=flat
-[travis-url]: https://travis-ci.org/nelsonic/esta
-[coveralls-image]: https://img.shields.io/coveralls/nelsonic/esta.svg?style=flat
-[coveralls-url]: https://coveralls.io/r/nelsonic/esta?branch=master
-[dependencies-url]: https://david-dm.org/nelsonic/esta
-[dependencies-image]: https://david-dm.org/nelsonic/esta.svg
+[travis-image]: https://img.shields.io/travis/docdis/learn-json-web-tokens.svg?style=flat
+[travis-url]: https://travis-ci.org/docdis/learn-json-web-tokens
+[coveralls-image]: https://img.shields.io/coveralls/docdis/learn-json-web-tokens.svg?style=flat
+[coveralls-url]: https://coveralls.io/r/docdis/learn-json-web-tokens?branch=master
+[dependencies-url]: https://david-dm.org/docdis/learn-json-web-tokens
+[dependencies-image]: https://david-dm.org/docdis/learn-json-web-tokens.svg

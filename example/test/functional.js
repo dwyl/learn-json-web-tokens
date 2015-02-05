@@ -2,8 +2,8 @@ var test = require('tape');
 var qs   = require('querystring');
 
 var lib  = require('../lib/helpers'); // auth, token verification & render helpers
-var mock = require('./mock');
-var token = null; // starts out empty
+var mock = require('./mock');         // basic mock of http module req & res
+var token = null;                     // starts out empty
 // views
 var index      = lib.view('index');      // default page
 var success    = lib.view('restricted'); // only show if JWT valid
@@ -106,7 +106,7 @@ test("logout", function (t) {
   t.end();
 });
 setTimeout(function(){
-  lib.exit(mock.res);  
+  lib.exit(mock.res);
 },600)
 
 process.on('uncaughtException', function(err) {
