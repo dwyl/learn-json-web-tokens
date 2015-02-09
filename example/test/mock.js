@@ -11,7 +11,6 @@ var res = new events.EventEmitter(); // gives us res.emit and req.on('data')
 req.headers = {
   'Content-Type': 'text/html',
   'user-agent': 'Mozilla/5.0',
-
 }
 
 // req.method e.g: POST or GET

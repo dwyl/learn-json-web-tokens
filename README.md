@@ -15,7 +15,7 @@ Learn how to use JSON Web Token (JWT) to *secure* your Web and/or Mobile Applica
 Do you want any (*all*) of these:
 
 + [x] Secure your website/app ***without cookies***.
-+ [x] No cookies means **no *annoying* cookie message** on your website
+  + [x] No cookies means **no *annoying* cookie message** on your website
 (see: [e-Privacy Directive](https://ico.org.uk/for-organisations/guide-to-pecr/cookies/))
 + [x] ***Stateless*** authentication (simplifies [***horizontal scaling***](http://en.wikipedia.org/wiki/Scalability#Horizontal_and_vertical_scaling))
 + [x] ***Prevent*** (mitigate) Cross-Site Request Forgery (**CSRF**) attacks.
@@ -29,7 +29,7 @@ Do you want any (*all*) of these:
 
 ###  In *English*
 
-*Instead* of using a browser **cookie** to authenticate people in your (web) app,
+*Instead* of using a browser **cookie** to identify/authenticate people in your (web) app,
 you put a standard-based token in the **header** or **url** of the page
 (or API endpoint) which proves the user has logged in and is allowed to
 access the desired content.
@@ -58,12 +58,16 @@ of a simple JavaScript object which describes the token along with the hashing a
 
 #### 2. Payload
 
-The second part of the JWT forms the core of the token.
+The second part of the JWT forms the core of the token.  
+Payload length is proportional to the amount of data you store in the JWT.  
+General rule of thumb is: store the bare minimum in the JWT.
+
 
 #### 3. Signature
 
 The third, and final, part of the JWT is a signature generated
-based on the header (part one) and the body (part two)
+based on the header (part one) and the body (part two) and will be used
+to *verify* that the JWT is valid.
 
 ### What are "Claims"?
 
@@ -188,7 +192,16 @@ without a (slow) request to a database.
 
 #### Store the Token in a Database?
 
+##### LevelDB
+
+If your app is *small* or you don't want to have to run a Redis server,
+you can get most of the benefits of Redis by running LevelDB.
+
+- [ ] update example to use LevelDB for Token storage (and invalidation!)
+
 ##### Redis
+
+Redis is the *scalable* way of storing your tokens.
 
 If you are *totally* new to Redis read:
 + Intro: http://redis.io/topics/introduction
@@ -203,12 +216,6 @@ http://stackoverflow.com/questions/10478794/more-than-4-billion-key-value-pairs-
 
 ***Quick* answer**: *use **Redis***:
 http://stackoverflow.com/questions/10558465/memcache-vs-redis
-
-##### LevelDB
-
-The *poor*-developer's Redis?
-If your app is *small* or you don't want to have to run a Redis server,
-you can get most of the benefits of Redis by running LevelDB.
 
 
 ### Q: Returning Visitor (*no State Preservation between sessions*)
