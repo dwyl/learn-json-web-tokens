@@ -15,8 +15,8 @@ Learn how to use JSON Web Token (JWT) to *secure* your Web and/or Mobile Applica
 Do you want any (*all*) of these:
 
 + [x] Secure your website/app ***without cookies***.
-  + [x] No cookies means **no *annoying* cookie message** on your website
-  (see: [e-Privacy Directive](https://ico.org.uk/for-organisations/guide-to-pecr/cookies/))
++ [x] No cookies means **no *annoying* cookie message** on your website
+(see: [e-Privacy Directive](https://ico.org.uk/for-organisations/guide-to-pecr/cookies/))
 + [x] ***Stateless*** authentication (simplifies [***horizontal scaling***](http://en.wikipedia.org/wiki/Scalability#Horizontal_and_vertical_scaling))
 + [x] ***Prevent*** (mitigate) Cross-Site Request Forgery (**CSRF**) attacks.
 
@@ -158,7 +158,7 @@ The tests for both the server routes and helper functions are in: **/example/tes
 2. /example/test/**integration.js** - simulates the requests a *user* would send to the server and tests the *responses*.
 
 Please *read* through the tests and *tell us* if anything is unclear!  
-**Note**: We wrote a basic "***mock***" of the http req/res objects  
+**Note**: We wrote a basic "***mock***" of the http req/res objects see: /example/test/**mock.js**  
 Confused/curious about Mocking? Read [When to Mock (by "Uncle Bob")](http://blog.8thlight.com/uncle-bob/2014/05/10/WhenToMock.html)
 
 - - -
@@ -175,6 +175,7 @@ A *naive* "*mitigation*" is to add *verifiable* "claims" to the token
 such as checking that the request came from the ***same browser*** (user-agent),
 **IP address** or more advanced
 "[**browser fingerprints**](http://stackoverflow.com/a/3287761/1148249)"
+... http://programmers.stackexchange.com/a/122385
 
 ### Q: How do we *Invalidate* sessions?
 
@@ -189,8 +190,25 @@ without a (slow) request to a database.
 
 ##### Redis
 
+If you are *totally* new to Redis read:
++ Intro: http://redis.io/topics/introduction
++ Redis in 30 mins:
+http://openmymind.net/2011/11/8/Redis-Zero-To-Master-In-30-Minutes-Part-1/
++ What is Redis? http://www.slideshare.net/dvirsky/introduction-to-redis
+
+Redis ***Scales*** (provided you have the RAM):
+http://stackoverflow.com/questions/10478794/more-than-4-billion-key-value-pairs-in-redis
+
+#### Memcache?
+
+***Quick* answer**: *use **Redis***:
+http://stackoverflow.com/questions/10558465/memcache-vs-redis
+
 ##### LevelDB
 
+The *poor*-developer's Redis?
+If your app is *small* or you don't want to have to run a Redis server,
+you can get most of the benefits of Redis by running LevelDB.
 
 
 ### Q: Returning Visitor (*no State Preservation between sessions*)
@@ -198,7 +216,7 @@ without a (slow) request to a database.
 Cookies are stored on the client and sent by the browser to the server
 on every request. Because the Which means if the person *closes* their browser
 they do not loose their session cookie (can re-open where they left off without
-  having to log-in again)
+having to log-in again)
 
 #### Browser-based Applications
 
@@ -272,6 +290,9 @@ http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html
 http://en.wikipedia.org/wiki/Claims-based_identity
 + Securing Requests with JWT:
 http://websec.io/2014/08/04/Securing-Requests-with-JWT.html
++ Avoid Database in authenticating user for each request (stateless):
+http://security.stackexchange.com/questions/49145/avoid-hitting-db-to-authenticate-a-user-on-every-request-in-stateless-web-app-ar
++ The Twelve-Factor App: http://12factor.net/ + http://12factor.net/processes
 
 [jsonwebtoken-icon]: https://nodei.co/npm/jsonwebtoken.png?downloads=true
 [jsonwebtoken-url]: https://npmjs.org/package/jsonwebtoken
