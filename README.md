@@ -4,9 +4,11 @@
 
 Learn how to use JSON Web Token (JWT) to *secure* your Web and/or Mobile Application!
 
-[![Node.js Version][node-version-image]][node-version-url] [![Build Status][travis-image]][travis-url] [![Code Climate](https://codeclimate.com/github/docdis/learn-json-web-tokens/badges/gpa.svg)](https://codeclimate.com/github/docdis/learn-json-web-tokens) [![Dependency Status](https://david-dm.org/docdis/learn-json-web-tokens.svg)](https://david-dm.org/docdis/learn-json-web-tokens)
+[![Node.js Version][node-version-image]][node-version-url]
+[![Build Status][travis-image]][travis-url]
 [![Code Climate](https://codeclimate.com/github/docdis/learn-json-web-tokens/badges/gpa.svg)](https://codeclimate.com/github/docdis/learn-json-web-tokens)
-
+[![Dependency Status](https://david-dm.org/docdis/learn-json-web-tokens.svg)](https://david-dm.org/docdis/learn-json-web-tokens)
+[![Test Coverage](https://codeclimate.com/github/docdis/learn-json-web-tokens/badges/coverage.svg)](https://codeclimate.com/github/docdis/learn-json-web-tokens)
 
 ## *Why*?
 
@@ -155,6 +157,8 @@ The tests are in: **/example/test**
 [![Test Coverage](https://codeclimate.com/github/docdis/learn-json-web-tokens/badges/coverage.svg)](https://codeclimate.com/github/docdis/learn-json-web-tokens)
 2. /example/test/**integration.js** - simulates the requests a *user* would send to the server and tests the responses.
 
+Please *read* through the tests and *tell us* if anything is unclear!
+
 - - -
 
 ## Issues with Tokens?
@@ -162,8 +166,13 @@ The tests are in: **/example/test**
 ### Q: If I put the JWT in the *URL* or *Header* is it *secure*?
 
 Good question! The *quick* **answer** is: ***No***.  
-Unless you are using SSL/TLS (http**s** in your url) to encrypt the connection,
+Unless you are using SSL/TLS (http**s** in your url) to encrypt the connection,  
 sending the Token [***in-the-clear***](http://en.wikipedia.org/wiki/Plaintext)
+is *always* going to be insecure (the token can be intercepted and re-used by a bad person...)  
+A *naive* "*mitigation*" is to add *verifiable* "claims" to the token
+such as checking that the request came from the ***same browser*** (user-agent),
+**IP address** or more advanced
+"[**browser fingerprints**](http://stackoverflow.com/a/3287761/1148249)"
 
 ### Q: How do we *Invalidate* sessions?
 
@@ -171,7 +180,7 @@ The person using your app has their **device** (phone/tablet/laptop)
 ***stolen*** how do you invalidate the token they were using?
 
 The idea behind JWT is that the tokens are ***stateless***
-they can be computed
+they can be computed by any node in a cluster and verified
 
 
 ### Q: Returning Visitor (*no State Preservation between sessions*)
@@ -183,7 +192,7 @@ they do not loose their session cookie (can re-open where they left off without
 
 ## Background Reading
 
-- Original Specification Draft:
+- Original **Specification** (Draft):
 https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32
 - Good intro (ruby-specific examples):
 http://www.intridea.com/blog/2013/11/7/json-web-token-the-useful-little-standard-you-haven-t-heard-about  
@@ -191,7 +200,8 @@ http://www.intridea.com/blog/2013/11/7/json-web-token-the-useful-little-standard
 + Getting to know JWT:
 https://scotch.io/tutorials/the-anatomy-of-a-json-web-token
 - Discussion: https://ask.auth0.com/c/jwt
-
++ ***How to*** do **stateless authentication** (session-less & cookie-less):
+http://stackoverflow.com/questions/20588467/how-to-do-stateless-session-less-cookie-less-authentication
 
 ## Which Node.js Module?
 
