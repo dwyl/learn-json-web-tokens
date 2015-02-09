@@ -149,15 +149,17 @@ its safe to compute them synchronously.
 
 ## Testing
 
-You may have noticed the [![Build Status][travis-image]][travis-url] badge at the *start* of this tutorial.
-is a sign the author(s) are not just *cobbling* code together.  
-The tests are in: **/example/test**
+You may have noticed the [![Build Status][travis-image]][travis-url] badge at the *start* of this tutorial.  
+This is a sign the author(s) are not just *cobbling* code together.  
+The tests for both the server routes and helper functions are in: **/example/test**
 
 1. /example/test/**functional.js** - *exercises* all the **helper methods** we created in /example/lib/**helpers.js**
 [![Test Coverage](https://codeclimate.com/github/docdis/learn-json-web-tokens/badges/coverage.svg)](https://codeclimate.com/github/docdis/learn-json-web-tokens)
-2. /example/test/**integration.js** - simulates the requests a *user* would send to the server and tests the responses.
+2. /example/test/**integration.js** - simulates the requests a *user* would send to the server and tests the *responses*.
 
-Please *read* through the tests and *tell us* if anything is unclear!
+Please *read* through the tests and *tell us* if anything is unclear!  
+**Note**: We wrote a basic "***mock***" of the http req/res objects  
+Confused/curious about Mocking? Read [When to Mock (by "Uncle Bob")](http://blog.8thlight.com/uncle-bob/2014/05/10/WhenToMock.html)
 
 - - -
 
@@ -180,7 +182,15 @@ The person using your app has their **device** (phone/tablet/laptop)
 ***stolen*** how do you invalidate the token they were using?
 
 The idea behind JWT is that the tokens are ***stateless***
-they can be computed by any node in a cluster and verified
+they can be **computed** by any node in a cluster and verified
+without a (slow) request to a database.
+
+#### Store the Token in a Database?
+
+##### Redis
+
+##### LevelDB
+
 
 
 ### Q: Returning Visitor (*no State Preservation between sessions*)
@@ -189,6 +199,29 @@ Cookies are stored on the client and sent by the browser to the server
 on every request. Because the Which means if the person *closes* their browser
 they do not loose their session cookie (can re-open where they left off without
   having to log-in again)
+
+#### Browser-based Applications
+
+Use ***localStorage*** to store
+
+##### Useful Links
+
++ Good ***history*** & overview of **Localstorage**:
+http://diveintohtml5.info/storage.html
++ MDN **Window.localStorage**:
+https://developer.mozilla.org/en-US/docs/Web/API/Window.localStorage
++ Brief description + basic *examples*:
+http://www.html5rocks.com/en/features/storage
++ Will it work for *my* visitors?
+http://caniuse.com/#search=localstorage  
+(**Quick answer**: ***Yes***! IE 8 & above, Android 4.0+, IOS 7.1+, Chrome & Firefox )
+
+
+
+#### Programatic (API) Access
+
+Other services accessing your API will have to store the token in a
+retrieval system (e.g: )
 
 ## Background Reading
 
