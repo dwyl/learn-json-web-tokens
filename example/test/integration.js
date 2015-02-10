@@ -132,7 +132,7 @@ setTimeout(function() { // only run tests once child_process has started
     });
   });
 
-}, 70); // give the server time to start
+}, 120); // give the server time to start
 
 
 process.on('uncaughtException', function(err) {

@@ -28,7 +28,8 @@
   },
   "homepage": "https://github.com/nelsonic/learn-json-web-tokens",
   "dependencies": {
-    "jsonwebtoken": "^3.2.2"
+    "jsonwebtoken": "^3.2.2",
+    "level": "^0.18.0"
   },
   "devDependencies": {
     "codeclimate-test-reporter": "0.0.4",

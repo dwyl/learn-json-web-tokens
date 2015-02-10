@@ -59,6 +59,7 @@ test("handler", function (t) {
   mock.req.emit('data', qs.stringify(postdata));
   mock.req.emit('end');
   token = mock.res.headers['x-access-token'];
+  // console.log(lib.verify(token));
   t.equal(mock.res.status, 200, "Authenticated");
   t.end();
 });
@@ -70,25 +71,34 @@ test("validation fail (bad-but-valid token)", function (t) {
     exp:   new Date().getTime() + 7*24*60*60*1000 // JS timestamp is ms...
   }, secret);
 
+  // console.log(lib.verify(token));
+
   mock.req.headers['x-access-token'] = token; // we got this above
-  var res = lib.validate(mock.req, mock.res);
-  t.equal(res.status, 401, "should NOT validate using BAD token");
-  t.end();
+  lib.validate(mock.req, mock.res, function(res){
+    // console.log(res);
+    t.equal(res.status, 401, "should NOT validate using BAD token");
+    t.end();
+  });
 });
 
 test("validation fail (invalid token)", function (t) {
   mock.req.headers['x-access-token'] = 'malformed token'; // we got this above
-  var res = lib.validate(mock.req, mock.res);
-  t.equal(res.status, 401, "should NOT validate using INVALID token");
-  t.end();
+  lib.validate(mock.req, mock.res, function(res){
+    t.equal(res.status, 401, "should NOT validate using INVALID token");
+    t.end();
+  });
 });
 
 
 test("validate", function (t) {
   mock.req.headers['x-access-token'] = token; // we got this above
-  var res = lib.validate(mock.req, mock.res);
-  t.equal(res.status, 200, "should validate using token");
-  t.end();
+  // console.log(lib.verify(token));
+  // console.log(token);
+  lib.validate(mock.req, mock.res, function(res){
+    // console.log(res);
+    t.equal(res.status, 200, "should validate using token");
+    t.end();
+  });
 });
 
 test("notFound", function (t) {
@@ -105,9 +115,11 @@ test("logout", function (t) {
   // mock.res.end('end');
   t.end();
 });
+
 setTimeout(function(){
+  lib.done(mock.res);
   lib.exit(mock.res);
-},600)
+},700)
 
 process.on('uncaughtException', function(err) {
   console.log('FAIL ... ' + err);
