@@ -21,24 +21,16 @@ var fail       = loadView('fail');       // auth fail
 // show fail page (login)
 function authFail(res, callback) {
   res.writeHead(401, {'Content-Type': 'text/html'});
-  // if(callback && typeof callback === 'function') {
-  //   res.end(fail);
-  //   return callback(res);
-  // } else {
-    return res.end(fail);
-  // }
+  return res.end(fail);
 }
 
 // generate a GUID
 function generateGUID() {
-  // console.log("Generate");
   return new Date().getTime(); // we can do better with crypto
 }
 
-
 // create JWT
 function generateToken(req, GUID) {
-  // console.log(' >>> '+GUID);
   var token = jwt.sign({
     auth:  GUID,
     agent: req.headers['user-agent'],
@@ -48,10 +40,8 @@ function generateToken(req, GUID) {
 }
 
 function authSuccess(req, res) {
-  // console.log(' ---> authSuccess Called');
-  var GUID   = generateGUID();
+  var GUID   = generateGUID(); // write/use a better GUID generator in practice
   var token  = generateToken(req, GUID);
-  // console.log(token);
   var record = {
     "valid" : true,
     "created" : new Date().getTime()
