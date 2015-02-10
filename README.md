@@ -151,7 +151,7 @@ and renders the **authFail** ***error*** page if its not.
 But, given that neither of these methods require *any* **I/O** *or* **Network** requests,
 its safe to compute them synchronously.
 
-## Testing
+## Tests
 
 You may have noticed the [![Build Status][travis-image]][travis-url] badge at the *start* of this tutorial.  
 This is a sign the author(s) are not just *cobbling* code together.  
@@ -194,10 +194,37 @@ without a (slow) request to a database.
 
 ##### LevelDB
 
-If your app is *small* or you don't want to have to run a Redis server,
-you can get most of the benefits of Redis by running LevelDB.
+If your app is *small* or you don't want to have to run a Redis server,  
+you can get most of the benefits of Redis by using LevelDB: http://leveldb.org/
 
-- [ ] update example to use LevelDB for Token storage (and invalidation!)
+We can ***either*** store the ***valid*** Tokens in the DB ***or**
+we can put the ***invalid*** tokens.
+Both of these require a round-trip to the DB to check if valid/invalid.
+So we prefer to store ***all*** tokens and update the
+**valid** property of t from true to false
+
+Example record stored in LevelDB
+```json
+"GUID" : {
+  "auth" : "true",
+  "created" : "timestamp",
+  "uid" : "1234"
+}
+```
+We would lookup this record by its GUID:
+
+```js
+var db = require('level');
+db.get(GUID, function(err, record){
+  // pseudo-code
+  if(record.auth){
+    // display private content
+  } else {
+    // show error message
+  }
+});
+```
+see: example/lib/helpers.js **validate** method for detail.
 
 ##### Redis
 
