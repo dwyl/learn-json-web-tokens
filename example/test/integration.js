@@ -29,7 +29,7 @@ setTimeout(function() { // only run tests once child_process has started
   });
 
   // attempt to access content before being authenticated
-  test("Authenticate "+host+port+"/auth (incorrect username/password should fail)", function (t) {
+  test("Attempt auth "+host+port+"/auth (incorrect username/password should fail)", function (t) {
 
     var form = {
       username: 'lordbusiness',
@@ -122,10 +122,42 @@ setTimeout(function() { // only run tests once child_process has started
   });
 
   // simulate logging out (reset token) >> how do we Invalidate it...?
+  test("Log out "+host+port+"/logout", function (t) {
+    var options = {
+      headers: {
+        'x-access-token': token,
+        'user-agent': 'Mozilla/5.0'
+      },
+      uri: host+port+"/logout",
+      method: 'GET'
+    }
+    request(options ,function (err, res, body) {
+      t.equal(body, 'Logged Out!', "Exit server");
+      t.equal(res.statusCode, 200, "End tests!");
+      t.end();
+    });
+  });
+
+  // simulate logging out (reset token) >> how do we Invalidate it...?
+  test("Attempt access using expired token (after logout)", function (t) {
+    var options = {
+      headers: {
+        'x-access-token': token,
+        'user-agent': 'Mozilla/5.0'
+      },
+      uri: host+port+"/private",
+      method: 'GET'
+    }
+    request(options ,function (err, res, body) {
+      // t.equal(body, 'Logged Out!', "Exit server");
+      t.equal(res.statusCode, 401, "Access Denied! (as expected)");
+      t.end();
+    });
+  });
+
 
   test("EXIT "+host+port+"/exit", function (t) {
     request(host+port+"/exit" ,function (err, res, body) {
-      // console.log(body);
       t.equal(body, 'bye', "Exit server");
       t.equal(res.statusCode, 404, "End tests!");
       t.end();

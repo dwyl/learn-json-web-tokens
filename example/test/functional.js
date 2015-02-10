@@ -101,18 +101,39 @@ test("validate", function (t) {
   });
 });
 
+test("logout", function (t) {
+  lib.logout(mock.req, mock.res, function(res){
+    // console.log(res.status);
+    t.equal(res.status, 200, "Logged out");
+    t.end();
+  });
+});
+
+test("no access after logout", function (t){
+  // confirm cannot access restricted content anymore:
+  mock.req.headers['x-access-token'] = token; // we got this above
+  lib.validate(mock.req, mock.res, function(res){
+    // console.log(res);
+    t.equal(res.status, 401, "No longer has access to private content!");
+    t.end();
+  });
+});
+
+
+test("malicious logout", function (t) {
+  mock.req.headers['x-access-token'] = 'malformed token'; // we got this above
+  lib.logout(mock.req, mock.res, function(res){
+    // console.log(res.status);
+    t.equal(res.status, 401, "Logged out");
+    // mock.res.end('end');
+    t.end();
+  });
+});
+
 test("notFound", function (t) {
   var res = lib.notFound(mock.res);
   // console.log(res.status);
   t.equal(res.status, 404, "Not found");
-  t.end();
-});
-
-test("logout", function (t) {
-  var res = lib.logout(mock.res);
-  // console.log(res.status);
-  t.equal(res.status, 200, "Logged out");
-  // mock.res.end('end');
   t.end();
 });
 

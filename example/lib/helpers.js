@@ -62,8 +62,6 @@ var u = { un: 'masterbuilder', pw: 'itsnosecret' };
 
 // handle authorisation requests
 function authHandler(req, res){
-  // >> lookup the actual user in our database in "real" app
-  // console.log("METHOD: "+req.method)
   if (req.method == 'POST') {
     var body = '';
     req.on('data', function (data) {
@@ -140,15 +138,33 @@ function home(res) {
   return res.end(index);
 }
 
-function logout(res) {
-  // "destroy" (invalidate) the token
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  return res.end('Logged Out!');
+function done(res) {
+  return; // does nothing. (pass as callback)
 }
 
-function done(res) {
-  return; // does nothing.
+function logout(req, res, callback) {
+  // invalidate the token
+  var token = req.headers['x-access-token'];
+  // console.log(' >>> ', token)
+  var decoded = verify(token);
+  if(decoded) { // otherwise someone can force the server to crash by sending a bad token!
+    // asynchronously read and invalidate
+    db.get(decoded.auth, function(err, record){
+      var updated    = JSON.parse(record);
+      updated.valid = false;
+      db.put(decoded.auth, updated, function (err) {
+        // console.log('updated: ', updated)
+        res.writeHead(200, {'Content-Type': 'text/plain'});
+        res.end('Logged Out!');
+        return callback(res);
+      });
+    });
+  } else {
+    authFail(res, done);
+    return callback(res);
+  }
 }
+
 
 module.exports = {
   fail : authFail,

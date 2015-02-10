@@ -7,7 +7,7 @@ http.createServer(function (req, res) {
   if( url === '/' || url === '/home' ) { app.home(res);            } // homepage
   else if( url === '/auth')    { app.handler(req, res);            } // authenticator
   else if( url === '/private') { app.validate(req, res, app.done); } // private content
-  else if( url === '/logout')  { app.logout(req, res);             } // end session
+  else if( url === '/logout')  { app.logout(req, res, app.done);   } // end session
   else if( url === '/exit')    { app.exit(res);                    } // for testing ONLY
   else                         { app.notFound(res);                } // 404 error
 }).listen(port);
