@@ -62,7 +62,7 @@ var u = { un: 'masterbuilder', pw: 'itsnosecret' };
 
 // handle authorisation requests
 function authHandler(req, res){
-  if (req.method == 'POST') {
+  if (req.method === 'POST') {
     var body = '';
     req.on('data', function (data) {
       body += data;
@@ -80,12 +80,23 @@ function authHandler(req, res){
 }
 
 function verify(token) {
+  var decoded = false;
   try {
-    var decoded = jwt.verify(token, secret);
+    decoded = jwt.verify(token, secret);
   } catch (e) {
-    var decoded = false;
+    decoded = false; // still false
   }
   return decoded;
+}
+
+// can't use the word private as its an ES "future" reserved word!
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#Keywords
+function privado(res, token) {
+  res.writeHead(200, {
+    'Content-Type': 'text/html',
+    'x-access-token': token
+  });
+  return res.end(restricted);
 }
 
 function validate(req, res, callback) {
@@ -98,10 +109,11 @@ function validate(req, res, callback) {
   } else {
     // check if a key exists, else import word list:
     db.get(decoded.auth, function (err, record) {
+      var r;
       try {
-        var r = JSON.parse(record);
+        r = JSON.parse(record);
       } catch (e) {
-        var r = { valid : false };
+        r = { valid : false };
       }
       if (err || !r.valid) {
         authFail(res);
@@ -112,14 +124,6 @@ function validate(req, res, callback) {
       }
     });
   }
-}
-
-function privado(res, token) {
-  res.writeHead(200, {
-    'Content-Type': 'text/html',
-    'x-access-token': token
-  });
-  return res.end(restricted);
 }
 
 function exit(res) {
