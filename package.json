@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "functional": "./node_modules/.bin/istanbul cover ./node_modules/tape/bin/tape ./example/test/functional.js | node_modules/tap-spec/bin/cmd.js",
-    "coverage": "./node_modules/.bin/istanbul cover ./node_modules/tape/bin/tape ./test/functional.js && ./node_modules/.bin/istanbul check-coverage --statements 100 --functions 100 --lines 100 --branches 100",
+    "coverage": "./node_modules/.bin/istanbul cover ./node_modules/tape/bin/tape ./example/test/functional.js && ./node_modules/.bin/istanbul check-coverage --statements 100 --functions 100 --lines 100 --branches 100",
     "test": "./node_modules/tape/bin/tape ./example/test/integration.js | node_modules/tap-spec/bin/cmd.js",
     "start": "node ./example/server.js",
     "jshint": "./node_modules/jshint/bin/jshint -c .jshintrc --exclude-path .gitignore .",
@@ -34,6 +34,7 @@
   },
   "devDependencies": {
     "codeclimate-test-reporter": "0.0.4",
+    "istanbul": "^0.3.5",
     "jshint": "^2.6.0",
     "pre-commit": "^1.0.2",
     "request": "^2.53.0",
