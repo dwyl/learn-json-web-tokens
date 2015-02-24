@@ -116,7 +116,6 @@ setTimeout(function() { // only run tests once child_process has started
     }
 
     request(options ,function (err, res, body) {
-
       t.equal(res.statusCode, 200, "Private content accessed");
       t.end();
     });
