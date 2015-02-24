@@ -1,6 +1,6 @@
 {
   "name": "learn-json-web-tokens",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A JSON Web Tokens Tutorial to secure your node.js apps!",
   "main": "server.js",
   "scripts": {

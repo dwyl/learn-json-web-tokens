@@ -60,7 +60,7 @@ setTimeout(function() { // only run tests once child_process has started
 
     var options = {
       headers: {
-        'x-access-token': 'invalid',
+        'authorization': 'invalid',
         'user-agent': 'Mozilla/5.0'
       },
       uri: host+port+"/private",
@@ -98,7 +98,7 @@ setTimeout(function() { // only run tests once child_process has started
     }
 
     request.post(options ,function (err, res, body) {
-      token = res.headers['x-access-token']; // save the token for later
+      token = res.headers.authorization; // save the token for later
       t.equal(res.statusCode, 200, "Authenticated");
       t.end();
     });
@@ -108,7 +108,7 @@ setTimeout(function() { // only run tests once child_process has started
 
     var options = {
       headers: {
-        'x-access-token': token,
+        'authorization': token,
         'user-agent': 'Mozilla/5.0'
       },
       uri: host+port+"/private",
@@ -116,6 +116,7 @@ setTimeout(function() { // only run tests once child_process has started
     }
 
     request(options ,function (err, res, body) {
+
       t.equal(res.statusCode, 200, "Private content accessed");
       t.end();
     });
@@ -125,7 +126,7 @@ setTimeout(function() { // only run tests once child_process has started
   test("Log out "+host+port+"/logout", function (t) {
     var options = {
       headers: {
-        'x-access-token': token,
+        'authorization': token,
         'user-agent': 'Mozilla/5.0'
       },
       uri: host+port+"/logout",
@@ -142,7 +143,7 @@ setTimeout(function() { // only run tests once child_process has started
   test("Attempt access using expired token (after logout)", function (t) {
     var options = {
       headers: {
-        'x-access-token': token,
+        'authorization': token,
         'user-agent': 'Mozilla/5.0'
       },
       uri: host+port+"/private",
