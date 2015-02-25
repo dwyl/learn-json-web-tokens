@@ -58,7 +58,7 @@ test("handler", function (t) {
   var postdata = { username: 'masterbuilder', password: 'itsnosecret' }
   mock.req.emit('data', qs.stringify(postdata));
   mock.req.emit('end');
-  token = mock.res.headers['x-access-token'];
+  token = mock.res.headers.authorization;
   // console.log(lib.verify(token));
   t.equal(mock.res.status, 200, "Authenticated");
   t.end();
@@ -73,7 +73,7 @@ test("validation fail (bad-but-valid token)", function (t) {
 
   // console.log(lib.verify(token));
 
-  mock.req.headers['x-access-token'] = token; // we got this above
+  mock.req.headers.authorization = token; // we got this above
   lib.validate(mock.req, mock.res, function(res){
     // console.log(res);
     t.equal(res.status, 401, "should NOT validate using BAD token");
@@ -82,7 +82,7 @@ test("validation fail (bad-but-valid token)", function (t) {
 });
 
 test("validation fail (invalid token)", function (t) {
-  mock.req.headers['x-access-token'] = 'malformed token'; // we got this above
+  mock.req.headers.authorization = 'malformed token'; // we got this above
   lib.validate(mock.req, mock.res, function(res){
     t.equal(res.status, 401, "should NOT validate using INVALID token");
     t.end();
@@ -91,7 +91,7 @@ test("validation fail (invalid token)", function (t) {
 
 
 test("validate", function (t) {
-  mock.req.headers['x-access-token'] = token; // we got this above
+  mock.req.headers.authorization = token; // we got this above
   // console.log(lib.verify(token));
   // console.log(token);
   lib.validate(mock.req, mock.res, function(res){
@@ -111,7 +111,7 @@ test("logout", function (t) {
 
 test("no access after logout", function (t){
   // confirm cannot access restricted content anymore:
-  mock.req.headers['x-access-token'] = token; // we got this above
+  mock.req.headers.authorization = token; // we got this above
   lib.validate(mock.req, mock.res, function(res){
     // console.log(res);
     t.equal(res.status, 401, "No longer has access to private content!");
@@ -121,7 +121,7 @@ test("no access after logout", function (t){
 
 
 test("malicious logout", function (t) {
-  mock.req.headers['x-access-token'] = 'malformed token'; // we got this above
+  mock.req.headers.authorization = 'malformed token'; // we got this above
   lib.logout(mock.req, mock.res, function(res){
     // console.log(res.status);
     t.equal(res.status, 401, "Logged out");

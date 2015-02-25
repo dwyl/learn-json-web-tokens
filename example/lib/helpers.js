@@ -52,7 +52,7 @@ function authSuccess(req, res) {
   })
   res.writeHead(200, {
     'Content-Type': 'text/html',
-    'x-access-token': token
+    'authorization': token
   });
   return res.end(restricted);
 }
@@ -94,13 +94,13 @@ function verify(token) {
 function privado(res, token) {
   res.writeHead(200, {
     'Content-Type': 'text/html',
-    'x-access-token': token
+    'authorization': token
   });
   return res.end(restricted);
 }
 
 function validate(req, res, callback) {
-  var token = req.headers['x-access-token'];
+  var token = req.headers.authorization;
   var decoded = verify(token);
   if(!decoded || !decoded.auth) {
     authFail(res);
@@ -148,14 +148,14 @@ function done(res) {
 
 function logout(req, res, callback) {
   // invalidate the token
-  var token = req.headers['x-access-token'];
+  var token = req.headers.authorization;
   // console.log(' >>> ', token)
   var decoded = verify(token);
   if(decoded) { // otherwise someone can force the server to crash by sending a bad token!
     // asynchronously read and invalidate
     db.get(decoded.auth, function(err, record){
       var updated    = JSON.parse(record);
-      updated.valid = false;
+      updated.valid  = false;
       db.put(decoded.auth, updated, function (err) {
         // console.log('updated: ', updated)
         res.writeHead(200, {'Content-Type': 'text/plain'});
