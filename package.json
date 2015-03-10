@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/nelsonic/learn-json-web-tokens",
   "dependencies": {
-    "jsonwebtoken": "^3.2.2",
+    "jsonwebtoken": "^4.1.0",
     "level": "^0.18.0"
   },
   "devDependencies": {
