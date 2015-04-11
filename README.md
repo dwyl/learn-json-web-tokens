@@ -22,7 +22,7 @@ Do you want any (*all*) of these:
 
 ## What?
 
-> "* **JSON Web Token** (JWT) is a compact **URL-safe** means of
+> "***JSON Web Token*** *(JWT) is a compact **URL-safe** means of
 > representing claims to be transferred between two parties.
 > The claims in a JWT are encoded as a JSON object that is digitally
 > signed using JSON Web Signature (JWS)*.  ~ IETF

@@ -1,6 +1,6 @@
 {
   "name": "learn-json-web-tokens",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A JSON Web Tokens Tutorial to secure your node.js apps!",
   "main": "server.js",
   "scripts": {
@@ -29,17 +29,17 @@
   },
   "homepage": "https://github.com/nelsonic/learn-json-web-tokens",
   "dependencies": {
-    "jsonwebtoken": "^4.2.2",
+    "jsonwebtoken": "^5.0.0",
     "level": "^0.18.0"
   },
   "devDependencies": {
     "codeclimate-test-reporter": "0.0.4",
-    "istanbul": "^0.3.5",
+    "istanbul": "^0.3.13",
     "jshint": "^2.6.0",
-    "pre-commit": "^1.0.2",
+    "pre-commit": "^1.0.6",
     "request": "^2.53.0",
-    "tap-spec": "^2.2.1",
-    "tape": "^3.5.0"
+    "tap-spec": "^3.0.0",
+    "tape": "^4.0.0"
   },
   "engines": {
     "node": ">= 0.8"
