@@ -29,15 +29,15 @@
   },
   "homepage": "https://github.com/nelsonic/learn-json-web-tokens",
   "dependencies": {
-    "jsonwebtoken": "^5.0.0",
-    "level": "^0.18.0"
+    "jsonwebtoken": "^5.0.1",
+    "level": "^1.0.0"
   },
   "devDependencies": {
     "codeclimate-test-reporter": "0.0.4",
-    "istanbul": "^0.3.13",
-    "jshint": "^2.6.0",
-    "pre-commit": "^1.0.6",
-    "request": "^2.53.0",
+    "istanbul": "^0.3.14",
+    "jshint": "^2.7.0",
+    "pre-commit": "^1.0.7",
+    "request": "^2.55.0",
     "tap-spec": "^3.0.0",
     "tape": "^4.0.0"
   },

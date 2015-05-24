@@ -22,10 +22,10 @@ Do you want any (*all*) of these:
 
 ## What?
 
-> "***JSON Web Token*** *(JWT) is a compact **URL-safe** means of
+> "***JSON Web Token*** *(JWT) is a compact* ***URL-safe*** *means of
 > representing claims to be transferred between two parties.
-> The claims in a JWT are encoded as a JSON object that is digitally
-> signed using JSON Web Signature (JWS)*.  ~ IETF
+> The claims in a JWT are* ***encoded*** *as a* ***JSON object*** *that is* ***digitally
+> signed*** *using JSON Web Signature (JWS)*.  ~ IETF
 
 ###  In *English*
 
@@ -279,7 +279,7 @@ retrieval system (e.g: )
 
 - Original **Specification** (Draft):
 https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32
-- Great overview from Atlassian: 
+- Great overview from Atlassian:
 https://developer.atlassian.com/static/connect/docs/latest/concepts/understanding-jwt.html
 - Good intro (ruby-specific examples):
 http://www.intridea.com/blog/2013/11/7/json-web-token-the-useful-little-standard-you-haven-t-heard-about  
