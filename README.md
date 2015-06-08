@@ -167,7 +167,7 @@ Confused/curious about Mocking? Read [When to Mock (by "Uncle Bob")](http://blog
 
 - - -
 
-## Issues with Tokens?
+## Frequently Asked Questions (*FAQ*)
 
 ### Q: If I put the JWT in the *URL* or *Header* is it *secure*?
 
@@ -239,6 +239,8 @@ http://openmymind.net/2011/11/8/Redis-Zero-To-Master-In-30-Minutes-Part-1/
 Redis ***Scales*** (provided you have the RAM):
 http://stackoverflow.com/questions/10478794/more-than-4-billion-key-value-pairs-in-redis
 
+> ***Get Started with Redis today***! [https://github.com/docdis/**learn-redis**](https://github.com/docdis/learn-redis)
+
 #### Memcache?
 
 ***Quick* answer**: *use **Redis***:
@@ -290,12 +292,34 @@ https://scotch.io/tutorials/the-anatomy-of-a-json-web-token
 + ***How to*** do **stateless authentication** (session-less & cookie-less):
 http://stackoverflow.com/questions/20588467/how-to-do-stateless-session-less-cookie-less-authentication
 
+### How to generate secret key?
+
+> "*Apologies if this is mentioned elsewhere. The private key used for signing the tokens, is this the same as a private key generated using ssh-keygen?*" ~ Originally asked by [@skota](https://github.com/skota) see: [dwyl/**hapi-auth-jwt2/issues**/48](https://github.com/dwyl/hapi-auth-jwt2/issues/48)
+
+
+Since JSON Web Tokens (JWT) are not signed using [***asymmetric encryption***](http://en.wikipedia.org/wiki/Public-key_cryptography) you do not *have* to generate your secret key using ***ssh-keygen***. You can just as easily use a ***strong password*** e.g: https://www.grc.com/passwords.htm provided its ***long and random***. The chance of collision (and thus someone being able to decode your encoded JSON) is pretty low. And if you join two of those **Strong Passwords** (*strings*) together, you'll have a 128bit ASCII String. So the chances of collision are less than than the [number of *atoms* in the universe](http://en.wikipedia.org/wiki/Observable_universe#Matter_content_.E2.80.94_number_of_atoms)
+
+In other words, you *can* use an ***RSA key***, but you don't *have to*.
+
+The main thing you need to remember is: don't share the key with people who are not in your core ("*DevOps Team*") or *accidentally* publish it by committing it to GitHub!
+
+
+
+
 ## Which Node.js Module?
 
 A search for "**JSON Web Token**" on NPM:
 https://www.npmjs.com/search?q=json+web+token yields ***many*** results!
 
 ![npm search for json web token](http://i.imgur.com/ZLN3LlW.png)
+
+### Building a Web App with Hapi.js?
+
+In our efforts to simplify using JWTs in Hapi.js apps,
+we wrote this module: https://github.com/dwyl/hapi-auth-jwt2
+
+
+### General Use in *Other* Node.js Projects
 
 We *highly* recommend using the **jsonwebtoken** module
 made by our friends [@auth0](https://twitter.com/auth0)
