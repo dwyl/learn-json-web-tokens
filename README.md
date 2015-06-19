@@ -58,8 +58,8 @@ of a simple JavaScript object which describes the token along with the hashing a
 
 #### 2. Payload
 
-The second part of the JWT forms the core of the token.  
-Payload length is proportional to the amount of data you store in the JWT.  
+The second part of the JWT forms the core of the token.
+Payload length is proportional to the amount of data you store in the JWT.
 General rule of thumb is: store the bare minimum in the JWT.
 
 
@@ -121,7 +121,7 @@ function generateToken(req){
   return token;
 }
 ```
-Which ***generates*** our JWT token when the user authenticates.  
+Which ***generates*** our JWT token when the user authenticates.
 (This is then sent back to the client in the **x-access-token** **header** for use in subsequent requests)
 
 and
@@ -153,16 +153,16 @@ its safe to compute them synchronously.
 
 ## Tests
 
-You may have noticed the [![Build Status][travis-image]][travis-url] badge at the *start* of this tutorial.  
-This is a sign the author(s) are not just *cobbling* code together.  
+You may have noticed the [![Build Status][travis-image]][travis-url] badge at the *start* of this tutorial.
+This is a sign the author(s) are not just *cobbling* code together.
 The tests for both the server routes and helper functions are in: **/example/test**
 
 1. /example/test/**functional.js** - *exercises* all the **helper methods** we created in /example/lib/**helpers.js**
 [![Test Coverage](https://codeclimate.com/github/docdis/learn-json-web-tokens/badges/coverage.svg)](https://codeclimate.com/github/docdis/learn-json-web-tokens)
 2. /example/test/**integration.js** - simulates the requests a *user* would send to the server and tests the *responses*.
 
-Please *read* through the tests and *tell us* if anything is unclear!  
-**Note**: We wrote a basic "***mock***" of the http req/res objects see: /example/test/**mock.js**  
+Please *read* through the tests and *tell us* if anything is unclear!
+**Note**: We wrote a basic "***mock***" of the http req/res objects see: /example/test/**mock.js**
 Confused/curious about Mocking? Read [When to Mock (by "Uncle Bob")](http://blog.8thlight.com/uncle-bob/2014/05/10/WhenToMock.html)
 
 - - -
@@ -171,10 +171,10 @@ Confused/curious about Mocking? Read [When to Mock (by "Uncle Bob")](http://blog
 
 ### Q: If I put the JWT in the *URL* or *Header* is it *secure*?
 
-Good question! The *quick* **answer** is: ***No***.  
-Unless you are using SSL/TLS (http**s** in your url) to encrypt the connection,  
+Good question! The *quick* **answer** is: ***No***.
+Unless you are using SSL/TLS (http**s** in your url) to encrypt the connection,
 sending the Token [***in-the-clear***](http://en.wikipedia.org/wiki/Plaintext)
-is *always* going to be insecure (the token can be intercepted and re-used by a bad person...)  
+is *always* going to be insecure (the token can be intercepted and re-used by a bad person...)
 A *naive* "*mitigation*" is to add *verifiable* "claims" to the token
 such as checking that the request came from the ***same browser*** (user-agent),
 **IP address** or more advanced
@@ -194,7 +194,7 @@ without a (slow) request to a database.
 
 ##### LevelDB
 
-If your app is *small* or you don't want to have to run a Redis server,  
+If your app is *small* or you don't want to have to run a Redis server,
 you can get most of the benefits of Redis by using LevelDB: http://leveldb.org/
 
 We can ***either*** store the ***valid*** Tokens in the DB ***or**
@@ -267,7 +267,7 @@ https://developer.mozilla.org/en-US/docs/Web/API/Window.localStorage
 + Brief description + basic *examples*:
 http://www.html5rocks.com/en/features/storage
 + Will it work for *my* visitors?
-http://caniuse.com/#search=localstorage  
+http://caniuse.com/#search=localstorage
 (**Quick answer**: ***Yes***! IE 8 & above, Android 4.0+, IOS 7.1+, Chrome & Firefox )
 
 
@@ -284,7 +284,7 @@ https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32
 - Great overview from Atlassian:
 https://developer.atlassian.com/static/connect/docs/latest/concepts/understanding-jwt.html
 - Good intro (ruby-specific examples):
-http://www.intridea.com/blog/2013/11/7/json-web-token-the-useful-little-standard-you-haven-t-heard-about  
+http://www.intridea.com/blog/2013/11/7/json-web-token-the-useful-little-standard-you-haven-t-heard-about
 + Friendlier introduction: http://jwt.io/
 + Getting to know JWT:
 https://scotch.io/tutorials/the-anatomy-of-a-json-web-token
@@ -324,9 +324,9 @@ we wrote this module: https://github.com/dwyl/hapi-auth-jwt2
 We *highly* recommend using the **jsonwebtoken** module
 made by our friends [@auth0](https://twitter.com/auth0)
 ([the identity/authentication experts](https://auth0.com/about)):
-- https://github.com/auth0/node-jsonwebtoken  
+- https://github.com/auth0/node-jsonwebtoken
 Which in turn uses:
-https://github.com/brianloveswords/node-jws  
+https://github.com/brianloveswords/node-jws
 [![NPM][jsonwebtoken-icon] ][jsonwebtoken-url]
 
 
