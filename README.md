@@ -74,7 +74,7 @@ to *verify* that the JWT is valid.
 Claims are the predefined **keys** and their **values**:
 
 + **iss**: issuer of the token
-+ **exp**: the expiration timestamp (reject tokens which have expired)
++ **exp**: the expiration timestamp (reject tokens which have expired). Note: as defined in the the spec, this must be in seconds.
 + **iat**: The time the JWT was issued. Can be used to determine the age of the JWT
 + **nbf**: "not before" is a future time when the token will become active.
 + **jti**: unique identifier for the JWT. Used to prevent the JWT from being re-used or replayed.
