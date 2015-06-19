@@ -108,7 +108,7 @@ We have *deliberately* made **server.js** as simple as possible for:
 ## Helper Methods
 
 All the helper methods are kept in **/example/lib/helpers.js**
-The two most interesting/relevant methods are:
+The two most interesting/relevant methods are (simplified versions show here):
 
 ```javascript
 // generate the JWT
@@ -116,7 +116,7 @@ function generateToken(req){
   var token = jwt.sign({
     auth:  'magic',
     agent: req.headers['user-agent'],
-    exp:   new Date().getTime() + 7*24*60*60*1000 // + 1 week (JS timestamp is ms...)
+    exp:   Math.floor(new Date().getTime()/1000) + 7*24*60*60; // Note: in seconds!
   }, secret);  // secret is defined in the environment variable JWT_SECRET
   return token;
 }

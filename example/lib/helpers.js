@@ -33,10 +33,15 @@ function generateGUID() {
 function generateToken(req, GUID, opts) {
   opts = opts || {};
 
+  // By default, expire the token after 7 days.
+  // NOTE: the value for 'exp' needs to be in seconds since
+  // the epoch as per the spec!
+  var expiresDefault = Math.floor(new Date().getTime()/1000) + 7*24*60*60;
+
   var token = jwt.sign({
     auth:  GUID,
     agent: req.headers['user-agent'],
-    exp:   opts.expires || new Date().getTime() + 7*24*60*60*1000 // JS timestamp is ms...
+    exp:   opts.expires || expiresDefault
   }, secret);
   return token;
 }
