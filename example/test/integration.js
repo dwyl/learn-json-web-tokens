@@ -4,10 +4,11 @@ var qs      = require('querystring');
 var host    = "http://127.0.0.1:";
 var port    = Math.floor(Math.random() * 9000) + 1000;
 
+process.env.PORT = port;
 // var server = require('../server');
 
 var exec = require('child_process').exec;
-exec('PORT='+port +' node ./example/server.js', function(error, stdout, stderr) {
+exec('node ./example/server.js', function(error, stdout, stderr) {
   // console.log(stdout);             // uncomment for console.log
   // console.log('stderr: ', stderr); // uncomment for errors
   if (error !== null) {
