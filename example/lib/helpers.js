@@ -30,18 +30,20 @@ function generateGUID() {
 }
 
 // create JWT
-function generateToken(req, GUID) {
+function generateToken(req, GUID, opts) {
+  opts = opts || {};
+
   var token = jwt.sign({
     auth:  GUID,
     agent: req.headers['user-agent'],
-    exp:   new Date().getTime() + 7*24*60*60*1000 // JS timestamp is ms...
+    exp:   opts.expires || new Date().getTime() + 7*24*60*60*1000 // JS timestamp is ms...
   }, secret);
   return token;
 }
 
-function generateAndStoreToken(req) {
+function generateAndStoreToken(req, opts) {
   var GUID   = generateGUID(); // write/use a better GUID generator in practice
-  var token  = generateToken(req, GUID);
+  var token  = generateToken(req, GUID, opts);
   var record = {
     "valid" : true,
     "created" : new Date().getTime()
