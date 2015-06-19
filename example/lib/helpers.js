@@ -39,7 +39,7 @@ function generateToken(req, GUID) {
   return token;
 }
 
-function authSuccess(req, res) {
+function generateAndStoreToken(req) {
   var GUID   = generateGUID(); // write/use a better GUID generator in practice
   var token  = generateToken(req, GUID);
   var record = {
@@ -49,7 +49,14 @@ function authSuccess(req, res) {
 
   db.put(GUID, JSON.stringify(record), function (err) {
     // console.log("record saved ", record);
-  })
+  });
+
+  return token;
+}
+
+function authSuccess(req, res) {
+  var token = generateAndStoreToken(req);
+
   res.writeHead(200, {
     'Content-Type': 'text/html',
     'authorization': token
@@ -181,5 +188,6 @@ module.exports = {
   success : authSuccess,
   validate : validate,
   verify : verify,
-  view : loadView
+  view : loadView,
+  generateAndStoreToken: generateAndStoreToken
 }
