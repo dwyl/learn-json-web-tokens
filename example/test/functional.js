@@ -68,7 +68,7 @@ test("validation fail (bad-but-valid token)", function (t) {
   var token = jwt.sign({
     auth:  'invalid',
     agent: mock.req.headers['user-agent'],
-    exp:   new Date().getTime() + 7*24*60*60*1000 // JS timestamp is ms...
+    exp:   Math.floor(new Date().getTime()/1000) + 7*24*60*60; // in seconds!
   }, secret);
 
   // console.log(lib.verify(token));
@@ -137,10 +137,32 @@ test("notFound", function (t) {
   t.end();
 });
 
+// Most of the previous test cases are part of a
+// a well-defined flow and thus depend on each other (and the tokens
+// available in the db). Therefore, since this test needs to add
+// a customized token to db, keeping this as the last one to avoid
+// accidentally interrupting that main flow.
+//
+// Ensure that the test case doesn't timeout too soon by tape
+test("validation fail (expired token)", { timeout: 1500 }, function (t) {
+  var token = lib.generateAndStoreToken(mock.req, {
+    expires: Math.floor(new Date().getTime()/1000) + 1 // 1 second in the future, value in seconds
+  });
+
+  mock.req.headers.authorization = token;
+
+  setTimeout(function() {
+    lib.validate(mock.req, mock.res, function(res){
+      t.equal(res.status, 401, "should NOT validate using EXPIRED token");
+      t.end();
+    });
+  }, 1100); // check validity right after the token has expired
+});
+
 setTimeout(function(){
   lib.done(mock.res);
   lib.exit(mock.res);
-},700)
+}, 1500);
 
 process.on('uncaughtException', function(err) {
   console.log('FAIL ... ' + err);

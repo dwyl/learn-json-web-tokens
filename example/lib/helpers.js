@@ -30,18 +30,25 @@ function generateGUID() {
 }
 
 // create JWT
-function generateToken(req, GUID) {
+function generateToken(req, GUID, opts) {
+  opts = opts || {};
+
+  // By default, expire the token after 7 days.
+  // NOTE: the value for 'exp' needs to be in seconds since
+  // the epoch as per the spec!
+  var expiresDefault = Math.floor(new Date().getTime()/1000) + 7*24*60*60;
+
   var token = jwt.sign({
     auth:  GUID,
     agent: req.headers['user-agent'],
-    exp:   new Date().getTime() + 7*24*60*60*1000 // JS timestamp is ms...
+    exp:   opts.expires || expiresDefault
   }, secret);
   return token;
 }
 
-function authSuccess(req, res) {
+function generateAndStoreToken(req, opts) {
   var GUID   = generateGUID(); // write/use a better GUID generator in practice
-  var token  = generateToken(req, GUID);
+  var token  = generateToken(req, GUID, opts);
   var record = {
     "valid" : true,
     "created" : new Date().getTime()
@@ -49,7 +56,14 @@ function authSuccess(req, res) {
 
   db.put(GUID, JSON.stringify(record), function (err) {
     // console.log("record saved ", record);
-  })
+  });
+
+  return token;
+}
+
+function authSuccess(req, res) {
+  var token = generateAndStoreToken(req);
+
   res.writeHead(200, {
     'Content-Type': 'text/html',
     'authorization': token
@@ -181,5 +195,6 @@ module.exports = {
   success : authSuccess,
   validate : validate,
   verify : verify,
-  view : loadView
+  view : loadView,
+  generateAndStoreToken: generateAndStoreToken
 }
