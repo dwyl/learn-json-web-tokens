@@ -4,11 +4,11 @@
   "description": "A JSON Web Tokens Tutorial to secure your node.js apps!",
   "main": "server.js",
   "scripts": {
-    "functional": "./node_modules/.bin/istanbul cover ./node_modules/tape/bin/tape ./example/test/functional.js | node_modules/tap-spec/bin/cmd.js",
-    "coverage": "./node_modules/.bin/istanbul cover ./node_modules/tape/bin/tape ./example/test/functional.js && ./node_modules/.bin/istanbul check-coverage --statements 100 --functions 100 --lines 100 --branches 100",
-    "test": "./node_modules/tape/bin/tape ./example/test/integration.js | node_modules/tap-spec/bin/cmd.js",
+    "functional": "istanbul cover ./node_modules/tape/bin/tape ./example/test/functional.js | tap-spec",
+    "coverage": "istanbul cover ./node_modules/tape/bin/tape ./example/test/functional.js && istanbul check-coverage --statements 100 --functions 100 --lines 100 --branches 100",
+    "test": "tape ./example/test/integration.js | tap-spec",
     "start": "node ./example/server.js",
-    "jshint": "./node_modules/jshint/bin/jshint -c .jshintrc --exclude-path .gitignore .",
+    "jshint": "jshint -c .jshintrc --exclude-path .gitignore .",
     "codeclimate": "CODECLIMATE_REPO_TOKEN=3f3e469b51750023cd2f400e639e3f9197917ba68efe8c63a19ae983895c8149 codeclimate ./node_modules/codeclimate-test-reporter/bin/codeclimate.js < ./coverage/lcov.info"
   },
   "repository": {
