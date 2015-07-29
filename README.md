@@ -6,9 +6,9 @@ Learn how to use JSON Web Token (JWT) to *secure* your Web and/or Mobile Applica
 
 [![Node.js Version][node-version-image]][node-version-url]
 [![Build Status][travis-image]][travis-url]
-[![Code Climate](https://codeclimate.com/github/docdis/learn-json-web-tokens/badges/gpa.svg)](https://codeclimate.com/github/docdis/learn-json-web-tokens)
-[![Dependency Status](https://david-dm.org/docdis/learn-json-web-tokens.svg)](https://david-dm.org/docdis/learn-json-web-tokens)
-[![Test Coverage](https://codeclimate.com/github/docdis/learn-json-web-tokens/badges/coverage.svg)](https://codeclimate.com/github/docdis/learn-json-web-tokens)
+[![Code Climate](https://codeclimate.com/github/dwyl/learn-json-web-tokens/badges/gpa.svg)](https://codeclimate.com/github/dwyl/learn-json-web-tokens)
+[![Dependency Status](https://david-dm.org/dwyl/learn-json-web-tokens.svg)](https://david-dm.org/dwyl/learn-json-web-tokens)
+[![Test Coverage](https://codeclimate.com/github/dwyl/learn-json-web-tokens/badges/coverage.svg)](https://codeclimate.com/github/dwyl/learn-json-web-tokens)
 
 ## *Why*?
 
@@ -158,7 +158,7 @@ This is a sign the author(s) are not just *cobbling* code together.
 The tests for both the server routes and helper functions are in: **/example/test**
 
 1. /example/test/**functional.js** - *exercises* all the **helper methods** we created in /example/lib/**helpers.js**
-[![Test Coverage](https://codeclimate.com/github/docdis/learn-json-web-tokens/badges/coverage.svg)](https://codeclimate.com/github/docdis/learn-json-web-tokens)
+[![Test Coverage](https://codeclimate.com/github/dwyl/learn-json-web-tokens/badges/coverage.svg)](https://codeclimate.com/github/dwyl/learn-json-web-tokens)
 2. /example/test/**integration.js** - simulates the requests a *user* would send to the server and tests the *responses*.
 
 Please *read* through the tests and *tell us* if anything is unclear!
@@ -239,7 +239,7 @@ http://openmymind.net/2011/11/8/Redis-Zero-To-Master-In-30-Minutes-Part-1/
 Redis ***Scales*** (provided you have the RAM):
 http://stackoverflow.com/questions/10478794/more-than-4-billion-key-value-pairs-in-redis
 
-> ***Get Started with Redis today***! [https://github.com/docdis/**learn-redis**](https://github.com/docdis/learn-redis)
+> ***Get Started with Redis today***! [https://github.com/dwyl/**learn-redis**](https://github.com/dwyl/learn-redis)
 
 #### Memcache?
 
@@ -361,9 +361,9 @@ http://security.stackexchange.com/questions/49145/avoid-hitting-db-to-authentica
 [node-version-url]: http://nodejs.org/download/
 [downloads-image]: https://img.shields.io/npm/dm/esta.svg?style=flat
 [downloads-url]: https://npmjs.org/package/esta
-[travis-image]: https://img.shields.io/travis/docdis/learn-json-web-tokens.svg?style=flat
-[travis-url]: https://travis-ci.org/docdis/learn-json-web-tokens
-[coveralls-image]: https://img.shields.io/coveralls/docdis/learn-json-web-tokens.svg?style=flat
-[coveralls-url]: https://coveralls.io/r/docdis/learn-json-web-tokens?branch=master
-[dependencies-url]: https://david-dm.org/docdis/learn-json-web-tokens
-[dependencies-image]: https://david-dm.org/docdis/learn-json-web-tokens.svg
+[travis-image]: https://img.shields.io/travis/dwyl/learn-json-web-tokens.svg?style=flat
+[travis-url]: https://travis-ci.org/dwyl/learn-json-web-tokens
+[coveralls-image]: https://img.shields.io/coveralls/dwyl/learn-json-web-tokens.svg?style=flat
+[coveralls-url]: https://coveralls.io/r/dwyl/learn-json-web-tokens?branch=master
+[dependencies-url]: https://david-dm.org/dwyl/learn-json-web-tokens
+[dependencies-image]: https://david-dm.org/dwyl/learn-json-web-tokens.svg
