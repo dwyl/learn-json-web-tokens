@@ -1,4 +1,6 @@
-# Learn to use JSON Web Tokens (JWT) for Authentication
+![JWT Logo](http://i.imgur.com/aBDkEzC.jpg)
+
+# Learn how to use *JSON Web Tokens* (JWT) for much *Authentication* win!
 
 ![dilbert fixed the internet](http://i.imgur.com/cNElVof.jpg)
 
@@ -337,7 +339,7 @@ https://github.com/brianloveswords/node-jws
 http://stackoverflow.com/questions/20228572/passport-local-with-node-jwt-simple
 + JWT Tokens as API Keys:
 https://auth0.com/blog/2014/12/02/using-json-web-tokens-as-api-keys/
-+ **10 Thinks you should know** about ***Tokens and Cookies***: 
++ **10 Thinks you should know** about ***Tokens and Cookies***:
 https://auth0.com/blog/2014/01/27/ten-things-you-should-know-about-tokens-and-cookies/#xss-xsrf
 + Information Security discussion:
 http://security.stackexchange.com/questions/51294/json-web-tokens-jwt-as-user-identification-and-authentication-tokens
