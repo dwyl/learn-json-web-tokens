@@ -66,7 +66,7 @@ function authSuccess(req, res) {
 
   res.writeHead(200, {
     'Content-Type': 'text/html',
-    'authorization': token
+    'x-access-token': token
   });
   return res.end(restricted);
 }
@@ -108,13 +108,13 @@ function verify(token) {
 function privado(res, token) {
   res.writeHead(200, {
     'Content-Type': 'text/html',
-    'authorization': token
+    'x-access-token': token
   });
   return res.end(restricted);
 }
 
 function validate(req, res, callback) {
-  var token = req.headers.authorization;
+  var token = req.headers['x-access-token'];
   var decoded = verify(token);
   if(!decoded || !decoded.auth) {
     authFail(res);
@@ -162,7 +162,7 @@ function done(res) {
 
 function logout(req, res, callback) {
   // invalidate the token
-  var token = req.headers.authorization;
+  var token = req.headers['x-access-token'];
   // console.log(' >>> ', token)
   var decoded = verify(token);
   if(decoded) { // otherwise someone can force the server to crash by sending a bad token!
