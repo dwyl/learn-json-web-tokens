@@ -249,10 +249,9 @@ http://stackoverflow.com/questions/10558465/memcache-vs-redis
 
 ### Q: Returning Visitor (*no State Preservation between sessions*)
 
-Cookies are stored on the client and sent by the browser to the server
-on every request. Because the Which means if the person *closes* their browser
-they do not loose their session cookie (can re-open where they left off without
-having to log-in again)
+Cookies are stored on the client and are sent by the browser to the server on every request. If the person *closes* their browser, cookies are preserved, so they can continue where they left off without having to log-in again. However, cookies will be sent on **all** requests that match the path and issuing domain, including those for images and css, where it isn't needed.
+
+[`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window.localStorage) provides a better mechanism for storing tokens during and between browser sessions.
 
 #### Browser-based Applications
 
