@@ -122,14 +122,14 @@ function generateToken(req){
 }
 ```
 Which ***generates*** our JWT token when the user authenticates.
-(This is then sent back to the client in the **x-access-token** **header** for use in subsequent requests)
+(This is then sent back to the client in the **Authorization** header for use in subsequent requests)
 
 and
 
 ```javascript
 // validate the token supplied in request header
 function validate(req, res) {
-  var token = req.headers['x-access-token'];
+  var token = req.headers.authorization;
   try {
     var decoded = jwt.verify(token, secret);
   } catch (e) {
