@@ -100,8 +100,8 @@ Using the *core* **node.js http** server we create 4 endpoints in **/example/ser
 
 1. **/home** : home page (not essential but its where our **login** form is.)
 2. **/auth** : *authenticate* the visitor (returns error + login form if failed)
-3. **/private** : our restricted content ***login require*** (valid session token) to see this page.
-4. **/logout** : invalidates the token and logout the user (prevent from re-using old token)
+3. **/private** : our restricted content - ***login required*** (valid session token) to see this page
+4. **/logout** : invalidates the token and logs out the user (prevent from re-using old token)
 
 We have *deliberately* made **server.js** as _simple as possible_ for:
 
@@ -127,8 +127,7 @@ function generateToken(req){
   return token;
 }
 ```
-Which ***generates*** our JWT token when the user authenticates.
-(This is then sent back to the client in the **Authorization** header for use in subsequent requests)
+Which ***generates*** our JWT token when the user authenticates (this is then sent back to the client in the **Authorization** header for use in subsequent requests),
 
 and
 
@@ -149,7 +148,7 @@ function validate(req, res) {
 }
 ```
 
-***validate*** checks the JWT supplied by the client is valid,
+Which **checks the JWT supplied by the client is valid**,
 shows private ("privado") content to the requestor if valid
 and renders the **authFail** ***error*** page if its not.
 
@@ -157,7 +156,7 @@ and renders the **authFail** ***error*** page if its not.
 But, given that neither of these methods require *any* **I/O** *or* **Network** requests,
 its pretty safe to compute them synchronously.
 
-> Tip: If you're looking for a ***Full Featured*** **JTW Auth Hapi.js plugin** (which does the verification/validation *asyncrhonously*) for your Hapi.js-based app please check out: [https://github.com/**dwyl/hapi-auth-jwt2**](https://github.com/dwyl/hapi-auth-jwt2)
+> Tip: If you're looking for a ***Full Featured*** **JWT Auth Hapi.js plugin** (which does the verification/validation *asyncrhonously*) for your Hapi.js-based app please check out: [https://github.com/**dwyl/hapi-auth-jwt2**](https://github.com/dwyl/hapi-auth-jwt2)
 
 ## Tests
 
@@ -169,7 +168,7 @@ The tests for both the server routes and helper functions are in: **/example/tes
 [![Test Coverage](https://codeclimate.com/github/dwyl/learn-json-web-tokens/badges/coverage.svg)](https://codeclimate.com/github/dwyl/learn-json-web-tokens)
 2. /example/test/**integration.js** - simulates the requests a *user* would send to the server and tests the *responses*.
 
-Please *read* through the tests and *tell us* if anything is unclear!
+Please *read* through the tests and *tell us* if anything is unclear!    
 **Note**: We wrote a basic "***mock***" of the http req/res objects see: /example/test/**mock.js**
 Confused/curious about Mocking? Read [When to Mock (by "Uncle Bob")](http://blog.8thlight.com/uncle-bob/2014/05/10/WhenToMock.html)
 
@@ -185,7 +184,7 @@ Confused/curious about Mocking? Read [When to Mock (by "Uncle Bob")](http://blog
 Good question! The *quick* **answer** is: ***No***.
 Unless you are using SSL/TLS (http**s** in your url) to encrypt the connection,
 sending the Token [***in-the-clear***](http://en.wikipedia.org/wiki/Plaintext)
-is *always* going to be insecure (the token can be intercepted and re-used by a bad person...)
+is *always* going to be insecure (the token can be intercepted and re-used by a bad person...).    
 A *naive* "*mitigation*" is to add *verifiable* "claims" to the token
 such as checking that the request came from the ***same browser*** (user-agent),
 **IP address** or more advanced
@@ -207,7 +206,7 @@ Both of these are good candidates for single-use tokens (_which expire after the
 ### Q: How do we *Invalidate* sessions?
 
 The person using your app has their **device** (phone/tablet/laptop)
-***stolen*** how do you invalidate the token they were using?
+***stolen***. How do you invalidate the token they were using?
 
 The idea behind JWT is that the tokens are ***stateless***
 they can be **computed** by any node in a cluster and verified
@@ -220,8 +219,8 @@ without a (slow) request to a database.
 If your app is *small* or you don't want to have to run a Redis server,
 you can get most of the benefits of Redis by using LevelDB: http://leveldb.org/
 
-We can ***either*** store the ***valid*** Tokens in the DB ***or**
-we can put the ***invalid*** tokens.
+We can ***either*** store the ***valid*** Tokens in the DB **or**
+we can store the ***invalid*** tokens.
 Both of these require a round-trip to the DB to check if valid/invalid.
 So we prefer to store ***all*** tokens and update the
 **valid** property of t from true to false
