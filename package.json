@@ -1,6 +1,6 @@
 {
   "name": "learn-json-web-tokens",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A JSON Web Tokens Tutorial to secure your node.js apps!",
   "main": "server.js",
   "scripts": {
@@ -9,7 +9,7 @@
     "test": "tape ./example/test/integration.js | tap-spec",
     "start": "node ./example/server.js",
     "jshint": "jshint -c .jshintrc --exclude-path .gitignore .",
-    "codeclimate": "CODECLIMATE_REPO_TOKEN=3f3e469b51750023cd2f400e639e3f9197917ba68efe8c63a19ae983895c8149 codeclimate ./node_modules/codeclimate-test-reporter/bin/codeclimate.js < ./coverage/lcov.info"
+    "codeclimate": "CODECLIMATE_REPO_TOKEN=38d95ab0f78e69f0c4e1f6c5c8fde7edfcf85d396684eb658b73662154e7b2cc codeclimate ./node_modules/codeclimate-test-reporter/bin/codeclimate.js < ./coverage/lcov.info"
   },
   "repository": {
     "type": "git",
@@ -29,17 +29,17 @@
   },
   "homepage": "https://github.com/nelsonic/learn-json-web-tokens",
   "dependencies": {
-    "jsonwebtoken": "^5.0.1",
-    "level": "^1.0.0"
+    "jsonwebtoken": "^5.0.4",
+    "level": "^1.3.0"
   },
   "devDependencies": {
-    "codeclimate-test-reporter": "0.0.4",
-    "istanbul": "^0.3.14",
-    "jshint": "^2.7.0",
-    "pre-commit": "^1.0.7",
-    "request": "^2.55.0",
-    "tap-spec": "^3.0.0",
-    "tape": "^4.0.0"
+    "codeclimate-test-reporter": "0.1.0",
+    "istanbul": "^0.3.17",
+    "jshint": "^2.8.0",
+    "pre-commit": "^1.0.10",
+    "request": "^2.60.0",
+    "tap-spec": "^4.0.2",
+    "tape": "^4.0.1"
   },
   "engines": {
     "node": ">= 0.8"

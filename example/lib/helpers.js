@@ -20,7 +20,7 @@ var fail       = loadView('fail');       // auth fail
 
 // show fail page (login)
 function authFail(res, callback) {
-  res.writeHead(401, {'Content-Type': 'text/html'});
+  res.writeHead(401, {'content-type': 'text/html'});
   return res.end(fail);
 }
 
@@ -65,7 +65,7 @@ function authSuccess(req, res) {
   var token = generateAndStoreToken(req);
 
   res.writeHead(200, {
-    'Content-Type': 'text/html',
+    'content-type': 'text/html',
     'authorization': token
   });
   return res.end(restricted);
@@ -107,7 +107,7 @@ function verify(token) {
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#Keywords
 function privado(res, token) {
   res.writeHead(200, {
-    'Content-Type': 'text/html',
+    'content-type': 'text/html',
     'authorization': token
   });
   return res.end(restricted);
@@ -141,18 +141,18 @@ function validate(req, res, callback) {
 }
 
 function exit(res) {
-  res.writeHead(404, {'Content-Type': 'text/plain'});
+  res.writeHead(404, {'content-type': 'text/plain'});
   res.end('bye');
   process.exit(); // kill the server!
 }
 
 function notFound(res) {
-  res.writeHead(404, {'Content-Type': 'text/plain'});
+  res.writeHead(404, {'content-type': 'text/plain'});
   return res.end('Not Found');
 }
 
 function home(res) {
-  res.writeHead(200, {'Content-Type': 'text/html'});
+  res.writeHead(200, {'content-type': 'text/html'});
   return res.end(index);
 }
 
@@ -172,7 +172,7 @@ function logout(req, res, callback) {
       updated.valid  = false;
       db.put(decoded.auth, updated, function (err) {
         // console.log('updated: ', updated)
-        res.writeHead(200, {'Content-Type': 'text/plain'});
+        res.writeHead(200, {'content-type': 'text/plain'});
         res.end('Logged Out!');
         return callback(res);
       });
