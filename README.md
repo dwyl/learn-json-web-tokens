@@ -1,6 +1,6 @@
 ![JWT logo wider](http://i.imgur.com/qDOOu4o.jpg)
 
-# Learn how to use *JSON Web Tokens* (JWT) for much *Authentication* win! [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/learn-json-web-tokens/issues)
+# Learn how to use *JSON Web Tokens* (JWT) for much *Authentication* win!
 
 ![dilbert fixed the internet](http://i.imgur.com/cNElVof.jpg)
 
@@ -87,7 +87,7 @@ Claims are the predefined **keys** and their **values**:
 
 See: http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html#RegisteredClaimName
 
-# Example
+# Example [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/learn-json-web-tokens/issues)
 
 Lets get stuck in with a simple example.
 (the *full* source is in the **/example** directory)
@@ -176,6 +176,9 @@ Confused/curious about Mocking? Read [When to Mock (by "Uncle Bob")](http://blog
 - - -
 
 ## Frequently Asked Questions (*FAQ*)
+
+> ***Got a Question? Ask!*** >> https://github.com/dwyl/learn-json-web-tokens/issues
+
 
 ### Q: If I put the JWT in the *URL* or *Header* is it *secure*?
 
