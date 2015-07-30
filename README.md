@@ -1,16 +1,16 @@
-![JWT Logo](http://i.imgur.com/aBDkEzC.jpg)
+![JWT logo wider](http://i.imgur.com/qDOOu4o.jpg)
 
-# Learn how to use *JSON Web Tokens* (JWT) for much *Authentication* win!
+# Learn how to use *JSON Web Tokens* (JWT) for much *Authentication* win! [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/learn-json-web-tokens/issues)
 
 ![dilbert fixed the internet](http://i.imgur.com/cNElVof.jpg)
 
 Learn how to use JSON Web Token (JWT) to *secure* your Web and/or Mobile Application!
 
-[![Node.js Version][node-version-image]][node-version-url]
 [![Build Status][travis-image]][travis-url]
 [![Code Climate](https://codeclimate.com/github/dwyl/learn-json-web-tokens/badges/gpa.svg)](https://codeclimate.com/github/dwyl/learn-json-web-tokens)
-[![Dependency Status](https://david-dm.org/dwyl/learn-json-web-tokens.svg)](https://david-dm.org/dwyl/learn-json-web-tokens)
 [![Test Coverage](https://codeclimate.com/github/dwyl/learn-json-web-tokens/badges/coverage.svg)](https://codeclimate.com/github/dwyl/learn-json-web-tokens)
+[![Dependency Status](https://david-dm.org/dwyl/learn-json-web-tokens.svg)](https://david-dm.org/dwyl/learn-json-web-tokens)
+[![Node.js Version][node-version-image]][node-version-url]
 
 ## *Why*?
 
@@ -33,15 +33,15 @@ note: don't worry, you can still *use* cookies in your app if you *really* want 
 
 ###  In *English*
 
-*Instead* of using a browser **cookie** to identify/authenticate people in your (web) app,
-you put a standard-based token in the **header** or **url** of the page
+To identify/authenticate people in your (web/mobile) app,
+put a ***standards-based token*** in the **header** or **url** of the page
 (or API endpoint) which proves the user has logged in and is allowed to
 access the desired content.
 
-example: `https://www.yoursite.com/private-content/?jwt=eyJ0eXAiOiJKV1Qi.eyJrZXkiOi.eUiabuiKv`
+example: `https://www.yoursite.com/private-content/?token=eyJ0eXAiOiJKV1Qi.eyJrZXkiOi.eUiabuiKv`
 
 **Note**: if this does not *look* "secure" to you,
-scroll down to the "***issues***"" section.
+scroll down to the "[***security***](https://github.com/dwyl/learn-json-web-tokens#q-if-i-put-the-jwt-in-the-url-or-header-is-it-secure)" section.
 
 ### What does a JWT *Look* Like?
 
@@ -103,11 +103,13 @@ Using the *core* **node.js http** server we create 4 endpoints in **/example/ser
 3. **/private** : our restricted content ***login require*** (valid session token) to see this page.
 4. **/logout** : invalidates the token and logout the user (prevent from re-using old token)
 
-We have *deliberately* made **server.js** as simple as possible for:
+We have *deliberately* made **server.js** as _simple as possible_ for:
 
 + Readability
 + Maintainability
 + Testability (all helper/handler methods are tested separately)
+
+> note: if you can make it _simpler_, please submit an [issue](https://github.com/dwyl/learn-json-web-tokens/issues) to discuss!
 
 ## Helper Methods
 
@@ -153,7 +155,9 @@ and renders the **authFail** ***error*** page if its not.
 
 **Note**: *Yes*, *both* these methods are ***synchronous***.
 But, given that neither of these methods require *any* **I/O** *or* **Network** requests,
-its safe to compute them synchronously.
+its pretty safe to compute them synchronously.
+
+> Tip: If you're looking for a ***Full Featured*** **JTW Auth Hapi.js plugin** (which does the verification/validation *asyncrhonously*) for your Hapi.js-based app please check out: [https://github.com/**dwyl/hapi-auth-jwt2**](https://github.com/dwyl/hapi-auth-jwt2)
 
 ## Tests
 
@@ -184,6 +188,18 @@ such as checking that the request came from the ***same browser*** (user-agent),
 **IP address** or more advanced
 "[**browser fingerprints**](http://stackoverflow.com/a/3287761/1148249)"
 ... http://programmers.stackexchange.com/a/122385
+
+The solution is to *either*:
++ use one-time-use (_single use_) tokens (_which expire after the link has been clicked_) ***or***
++ Don't use url-tokens where high degree of security is required.
+(e.g: don't send someone a link which allows them to perform a transaction)
+
+**Use-cases** for a JWT token in a url are:
++ account verification - when you email a person a link after they register on your site. `https://yoursite.co/account/verify?token=jwt.goes.here`
++ password re-set - ensures that the person re-setting the password has access to the email belonging to the account.
+ `https://yoursite.co/account/reset-password?token=jwt.goes.here`
+
+Both of these are good candidates for single-use tokens (_which expire after they have been clicked_).
 
 ### Q: How do we *Invalidate* sessions?
 
@@ -259,7 +275,13 @@ Cookies are stored on the client and are sent by the browser to the server on ev
 
 #### Browser-based Applications
 
-Use ***localStorage*** to store
+There are two options for storing your JWTs:
+1. Use ***localStorage*** to store your JWTs on the client side (_means you need to remember to send the JWT in your `authorization` header for subsequent http/ajax requests_)
+2. Store your JWT in a cookie (_set and forget_)
+
+> We _obviously_ prefer the cookie-less approach.
+But if done right, cookies still have their place in modern web apps!
+(_see the Auth0 article on "10 things you should know" in the further reading below_)
 
 ##### Useful Links
 
@@ -274,26 +296,10 @@ http://caniuse.com/#search=localstorage
 (**Quick answer**: ***Yes***! IE 8 & above, Android 4.0+, IOS 7.1+, Chrome & Firefox )
 
 
-
 #### Programatic (API) Access
 
 Other services accessing your API will have to store the token in a
-retrieval system (e.g: )
-
-## Background Reading
-
-- Original **Specification** (Draft):
-https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32
-- Great overview from Atlassian:
-https://developer.atlassian.com/static/connect/docs/latest/concepts/understanding-jwt.html
-- Good intro (ruby-specific examples):
-http://www.intridea.com/blog/2013/11/7/json-web-token-the-useful-little-standard-you-haven-t-heard-about
-+ Friendlier introduction: http://jwt.io/
-+ Getting to know JWT:
-https://scotch.io/tutorials/the-anatomy-of-a-json-web-token
-- Discussion: https://ask.auth0.com/c/jwt
-+ ***How to*** do **stateless authentication** (session-less & cookie-less):
-http://stackoverflow.com/questions/20588467/how-to-do-stateless-session-less-cookie-less-authentication
+retrieval system (e.g: Redis or SQLite for mobile apps) and send the token back on each request.
 
 ### How to generate secret key?
 
@@ -332,8 +338,26 @@ Which in turn uses:
 https://github.com/brianloveswords/node-jws
 [![NPM][jsonwebtoken-icon] ][jsonwebtoken-url]
 
+Another great option is: https://github.com/joaquimserafim/json-web-token
+by our friend [@joaquimserafim](https://github.com/joaquimserafim)
 
-## Further Reading
+## Essential Reading (_Background_)
+
+- Original **Specification** (Draft):
+https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32
+- Great overview from Atlassian:
+https://developer.atlassian.com/static/connect/docs/latest/concepts/understanding-jwt.html
+- Good intro (ruby-specific examples):
+http://www.intridea.com/blog/2013/11/7/json-web-token-the-useful-little-standard-you-haven-t-heard-about
++ Friendlier introduction: http://jwt.io/
++ Getting to know JWT:
+https://scotch.io/tutorials/the-anatomy-of-a-json-web-token
+- Discussion: https://ask.auth0.com/c/jwt
++ ***How to*** do **stateless authentication** (session-less & cookie-less):
+http://stackoverflow.com/questions/20588467/how-to-do-stateless-session-less-cookie-less-authentication
+
+
+## Further Reading (_Recommended_) [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/learn-json-web-tokens/issues)
 
 + JWT with Passport.js:
 http://stackoverflow.com/questions/20228572/passport-local-with-node-jwt-simple
@@ -358,6 +382,14 @@ http://websec.io/2014/08/04/Securing-Requests-with-JWT.html
 + Avoid Database in authenticating user for each request (stateless):
 http://security.stackexchange.com/questions/49145/avoid-hitting-db-to-authenticate-a-user-on-every-request-in-stateless-web-app-ar
 + The Twelve-Factor App: http://12factor.net/ + http://12factor.net/processes
+
+# *Thanks* for Learning with Us!
+
+If you found this quick guide useful, please star it on GitHub!
+and re-tweet to share it with others: https://twitter.com/olizilla/status/626487231860080640
+
+[![olizilla tweet](http://i.imgur.com/rCvNvvk.jpg)](https://twitter.com/olizilla/status/626487231860080640 "Please Re-Tweet!")
+
 
 [jsonwebtoken-icon]: https://nodei.co/npm/jsonwebtoken.png?downloads=true
 [jsonwebtoken-url]: https://npmjs.org/package/jsonwebtoken
