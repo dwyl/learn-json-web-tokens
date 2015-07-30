@@ -68,7 +68,7 @@ test("validation fail (bad-but-valid token)", function (t) {
   var token = jwt.sign({
     auth:  'invalid',
     agent: mock.req.headers['user-agent'],
-    exp:   Math.floor(new Date().getTime()/1000) + 7*24*60*60; // in seconds!
+    exp:   Math.floor(new Date().getTime()/1000) + 7*24*60*60 // in seconds!
   }, secret);
 
   // console.log(lib.verify(token));
