@@ -156,7 +156,7 @@ and renders the **authFail** ***error*** page if its not.
 But, given that neither of these methods require *any* **I/O** *or* **Network** requests,
 its pretty safe to compute them synchronously.
 
-> Tip: If you're looking for a ***Full Featured*** **JWT Auth Hapi.js plugin** (which does the verification/validation *asyncrhonously*) for your Hapi.js-based app please check out: [https://github.com/**dwyl/hapi-auth-jwt2**](https://github.com/dwyl/hapi-auth-jwt2)
+> Tip: If you're looking for a ***Full Featured*** **JWT Auth Hapi.js plugin** (which does the verification/validation *asynchronously*) for your Hapi.js-based app please check out: [https://github.com/**dwyl/hapi-auth-jwt2**](https://github.com/dwyl/hapi-auth-jwt2)
 
 ## Tests
 
