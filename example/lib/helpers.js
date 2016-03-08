@@ -9,7 +9,7 @@ var jwt  = require('jsonwebtoken');
 var secret = process.env.JWT_SECRET || "CHANGE_THIS_TO_SOMETHING_RANDOM"; // super secret
 
 function loadView(view) {
-  var filepath = path.resolve(__dirname + '../../views/' + view + '.html');
+  var filepath = path.resolve(__dirname + '/../views/' + view + '.html');
   return fs.readFileSync(filepath).toString();
 }
 
