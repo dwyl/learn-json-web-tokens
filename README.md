@@ -384,6 +384,7 @@ http://websec.io/2014/08/04/Securing-Requests-with-JWT.html
 + Avoid Database in authenticating user for each request (stateless):
 http://security.stackexchange.com/questions/49145/avoid-hitting-db-to-authenticate-a-user-on-every-request-in-stateless-web-app-ar
 + The Twelve-Factor App: http://12factor.net/ + http://12factor.net/processes
++ Auth in Hapi with JWT: https://medium.com/@thedon/auth-in-hapi-with-jwt-780ce4d072c7#.clgj5lknq
 
 # *Thanks* for Learning with Us!
 
