@@ -18,7 +18,7 @@ Do you want any (*all*) of these:
 
 + [x] Secure your website/app ***without cookies***
   + [x] No cookies means **no *annoying* cookie message** on your website
-(see: [e-Privacy Directive](https://ico.org.uk/for-organisations/guide-to-pecr/cookies/))  
+(see: [e-Privacy Directive](https://ico.org.uk/for-organisations/guide-to-pecr/cookies-and-similar-technologies/))  
 note: don't worry, you can still *use* cookies in your app if you *really* want to!
 *we've got you covered*: [dwyl/hapi-auth-jwt2#***store-your-jwt-in-a-cookie***](https://github.com/dwyl/hapi-auth-jwt2#want-to-sendstore-your-jwt-in-a-cookie)
 + [x] ***Stateless*** authentication (simplifies [***horizontal scaling***](http://en.wikipedia.org/wiki/Scalability#Horizontal_and_vertical_scaling))
