@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "codeclimate-test-reporter": "0.1.0",
-    "istanbul": "^0.3.17",
+    "istanbul": "^0.4.3",
     "jshint": "^2.8.0",
     "pre-commit": "^1.0.10",
     "request": "^2.60.0",
