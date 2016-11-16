@@ -14,15 +14,13 @@ Learn how to use JSON Web Token (JWT) to *secure* your Web and/or Mobile Applica
 
 ## *Why*?
 
-Do you want any (*all*) of these:
+JSON Web Tokens (JWTs) make it *easy* to _**send read-only signed**_ "_**claims**_"
+between services (*both internal and external to your app/site*).
+Claims are *any* bits of data that you want someone else to be able to *read*
+and/or *verify* but ***not alter***.
 
-+ [x] Secure your website/app ***without cookies***
-  + [x] No cookies means **no *annoying* cookie message** on your website
-(see: [e-Privacy Directive](https://ico.org.uk/for-organisations/guide-to-pecr/cookies-and-similar-technologies/))  
-note: don't worry, you can still *use* cookies in your app if you *really* want to!
-*we've got you covered*: [dwyl/hapi-auth-jwt2#***store-your-jwt-in-a-cookie***](https://github.com/dwyl/hapi-auth-jwt2#want-to-sendstore-your-jwt-in-a-cookie)
-+ [x] ***Stateless*** authentication (simplifies [***horizontal scaling***](http://en.wikipedia.org/wiki/Scalability#Horizontal_and_vertical_scaling))
-+ [x] ***Prevent*** (mitigate) Cross-Site Request Forgery (**CSRF**) attacks.
+
+> **Note**: *If that sounds buzz-wordy, don't worry, it will all become clear in the next 5 mins of reading!*
 
 ## What?
 
@@ -40,7 +38,7 @@ access the desired content.
 
 example: `https://www.yoursite.com/private-content/?token=eyJ0eXAiOiJKV1Qi.eyJrZXkiOi.eUiabuiKv`
 
-**Note**: if this does not *look* "secure" to you,
+> **Note**: if this does not *look* "secure" to you,
 scroll down to the "[***security***](https://github.com/dwyl/learn-json-web-tokens#q-if-i-put-the-jwt-in-the-url-or-header-is-it-secure)" section.
 
 ### What does a JWT *Look* Like?
@@ -168,7 +166,7 @@ The tests for both the server routes and helper functions are in: **/example/tes
 [![Test Coverage](https://codeclimate.com/github/dwyl/learn-json-web-tokens/badges/coverage.svg)](https://codeclimate.com/github/dwyl/learn-json-web-tokens)
 2. /example/test/**integration.js** - simulates the requests a *user* would send to the server and tests the *responses*.
 
-Please *read* through the tests and *tell us* if anything is unclear!    
+Please *read* through the tests and *tell us* if anything is unclear!
 **Note**: We wrote a basic "***mock***" of the http req/res objects see: /example/test/**mock.js**
 Confused/curious about Mocking? Read [When to Mock (by "Uncle Bob")](http://blog.8thlight.com/uncle-bob/2014/05/10/WhenToMock.html)
 
@@ -184,7 +182,7 @@ Confused/curious about Mocking? Read [When to Mock (by "Uncle Bob")](http://blog
 Good question! The *quick* **answer** is: ***No***.
 Unless you are using SSL/TLS (http**s** in your url) to encrypt the connection,
 sending the Token [***in-the-clear***](http://en.wikipedia.org/wiki/Plaintext)
-is *always* going to be insecure (the token can be intercepted and re-used by a bad person...).    
+is *always* going to be insecure (the token can be intercepted and re-used by a bad person...).
 A *naive* "*mitigation*" is to add *verifiable* "claims" to the token
 such as checking that the request came from the ***same browser*** (user-agent),
 **IP address** or more advanced
