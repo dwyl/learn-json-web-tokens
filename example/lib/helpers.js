@@ -36,13 +36,13 @@ function generateToken(req, GUID, opts) {
   // By default, expire the token after 7 days.
   // NOTE: the value for 'exp' needs to be in seconds since
   // the epoch as per the spec!
-  var expiresDefault = Math.floor(Date.now() + (1000 * 60 * 60 * 24 * 7));
+  var expiresDefault = '7d';
 
   var token = jwt.sign({
     auth:  GUID,
-    agent: req.headers['user-agent'],
-    exp:   opts.expires || expiresDefault
-  }, secret);
+    agent: req.headers['user-agent']
+  }, secret, { expiresIn: expiresDefault });
+
   return token;
 }
 
