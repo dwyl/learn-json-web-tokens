@@ -67,9 +67,8 @@ test("handler", function (t) {
 test("validation fail (bad-but-valid token)", function (t) {
   var token = jwt.sign({
     auth:  'invalid',
-    agent: mock.req.headers['user-agent'],
-    exp:   Math.floor(new Date().getTime()/1000) + 7*24*60*60 // in seconds!
-  }, secret);
+    agent: mock.req.headers['user-agent']
+  }, secret, { expiresIn: '7d' });
 
   // console.log(lib.verify(token));
 
@@ -146,7 +145,7 @@ test("notFound", function (t) {
 // Ensure that the test case doesn't timeout too soon by tape
 test("validation fail (expired token)", { timeout: 1500 }, function (t) {
   var token = lib.generateAndStoreToken(mock.req, {
-    expires: Math.floor(new Date().getTime()/1000) + 1 // 1 second in the future, value in seconds
+    expires: '1s'
   });
 
   mock.req.headers.authorization = token;

@@ -41,7 +41,7 @@ function generateToken(req, GUID, opts) {
   var token = jwt.sign({
     auth:  GUID,
     agent: req.headers['user-agent']
-  }, secret, { expiresIn: expiresDefault });
+  }, secret, { expiresIn: opts.expires || expiresDefault });
 
   return token;
 }
