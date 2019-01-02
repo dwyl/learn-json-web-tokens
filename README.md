@@ -350,7 +350,7 @@ by our friend [@joaquimserafim](https://github.com/joaquimserafim)
 - Original **Specification** (Draft):
 https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32
 - Great overview from Atlassian:
-https://developer.atlassian.com/static/connect/docs/latest/concepts/understanding-jwt.html
+https://developer.atlassian.com/cloud/jira/platform/understanding-jwt/
 - Good intro (ruby-specific examples):
 http://www.intridea.com/blog/2013/11/7/json-web-token-the-useful-little-standard-you-haven-t-heard-about
 + Friendlier introduction: http://jwt.io/
