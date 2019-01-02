@@ -112,7 +112,7 @@ We have *deliberately* made **server.js** as _simple as possible_ for:
 ## Helper Methods
 
 All the helper methods are kept in **/example/lib/helpers.js**
-The two most interesting/relevant methods are (simplified versions show here):
+The two most interesting/relevant methods are (simplified versions shown here):
 
 ```javascript
 // generate the JWT
@@ -221,7 +221,7 @@ We can ***either*** store the ***valid*** Tokens in the DB **or**
 we can store the ***invalid*** tokens.
 Both of these require a round-trip to the DB to check if valid/invalid.
 So we prefer to store ***all*** tokens and update the
-**valid** property of t from true to false
+**valid** property of the token from true to false.
 
 Example record stored in LevelDB
 ```json
@@ -306,7 +306,7 @@ retrieval system (e.g: Redis or SQLite for mobile apps) and send the token back 
 > "*Apologies if this is mentioned elsewhere. The private key used for signing the tokens, is this the same as a private key generated using ssh-keygen?*" ~ Originally asked by [@skota](https://github.com/skota) see: [dwyl/**hapi-auth-jwt2/issues**/48](https://github.com/dwyl/hapi-auth-jwt2/issues/48)
 
 
-Since JSON Web Tokens (JWT) are not signed using [***asymmetric encryption***](http://en.wikipedia.org/wiki/Public-key_cryptography) you do not *have* to generate your secret key using ***ssh-keygen***. You can just as easily use a ***strong password*** e.g: https://www.grc.com/passwords.htm provided its ***long and random***. The chance of collision (and thus someone being able to decode your encoded JSON) is pretty low. And if you join two of those **Strong Passwords** (*strings*) together, you'll have a 128bit ASCII String. So the chances of collision are less than the [number of *atoms* in the universe](http://en.wikipedia.org/wiki/Observable_universe#Matter_content_.E2.80.94_number_of_atoms).
+Since JSON Web Tokens (JWT) are not signed using [***asymmetric encryption***](http://en.wikipedia.org/wiki/Public-key_cryptography) you do not *have* to generate your secret key using ***ssh-keygen***. You can just as easily use a ***strong password*** e.g: https://www.grc.com/passwords.htm provided it's ***long and random***. The chance of collision (and thus someone being able to decode your encoded JSON) is pretty low. And if you join two of those **Strong Passwords** (*strings*) together, you'll have a 128bit ASCII String. So the chances of collision are less than the [number of *atoms* in the universe](http://en.wikipedia.org/wiki/Observable_universe#Matter_content_.E2.80.94_number_of_atoms).
 
 To quickly and easily create a secret key using Node's crypto library, run this command.
 
