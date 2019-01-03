@@ -47,7 +47,7 @@ Tokens are a string of "url safe" characters which *encode* information.
 Tokens have **three components** (separated by periods)
 (shown here on multiple lines for *readability* but used as a single string of text)
 
-```js
+```
 eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9           // header
 .eyJrZXkiOiJ2YWwiLCJpYXQiOjE0MjI2MDU0NDV9      // payload
 .eUiabuiKv-8PYk2AkGY4Fb5KMZeorYBLw261JPQD5lM   // signature
@@ -295,7 +295,7 @@ http://caniuse.com/#search=localstorage
 (**Quick answer**: ***Yes***! IE 8 & above, Android 4.0+, IOS 7.1+, Chrome & Firefox )
 
 
-#### Programatic (API) Access
+#### Programmatic (API) Access
 
 Other services accessing your API will have to store the token in a
 retrieval system (e.g: Redis or SQLite for mobile apps) and send the token back on each request.
