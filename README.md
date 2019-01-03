@@ -117,12 +117,11 @@ The two most interesting/relevant methods are (simplified versions shown here):
 ```javascript
 // generate the JWT
 function generateToken(req){
-  var token = jwt.sign({
+  return jwt.sign({
     auth:  'magic',
     agent: req.headers['user-agent'],
     exp:   Math.floor(new Date().getTime()/1000) + 7*24*60*60; // Note: in seconds!
   }, secret);  // secret is defined in the environment variable JWT_SECRET
-  return token;
 }
 ```
 Which ***generates*** our JWT token when the user authenticates (this is then sent back to the client in the **Authorization** header for use in subsequent requests),
