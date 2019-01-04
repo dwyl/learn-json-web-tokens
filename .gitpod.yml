@@ -1,0 +1,6 @@
+ports:
+- port: 1337
+  onOpen: open-preview
+tasks:
+- init: npm install
+  command: node example/server.js

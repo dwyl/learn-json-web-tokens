@@ -92,6 +92,10 @@ Lets get stuck in with a simple example.
 
 > TRY it: https://jwt.herokuapp.com/
 
+To play around with the example you can open it in Gitpod (requires OAuth with GitHub).
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io#https://github.com/dwyl/learn-json-web-tokens/blob/master/example/lib/helpers.js)
+
 ## Server
 
 Using the *core* **node.js http** server we create 4 endpoints in **/example/server.js**:
