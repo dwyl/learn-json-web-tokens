@@ -6,11 +6,13 @@
 
 Learn how to use JSON Web Token (JWT) to *secure* your Web and/or Mobile Application!
 
-[![Build Status][travis-image]][travis-url]
-[![Code Climate](https://codeclimate.com/github/dwyl/learn-json-web-tokens/badges/gpa.svg)](https://codeclimate.com/github/dwyl/learn-json-web-tokens)
-[![Test Coverage](https://codeclimate.com/github/dwyl/learn-json-web-tokens/badges/coverage.svg)](https://codeclimate.com/github/dwyl/learn-json-web-tokens)
-[![Dependency Status](https://david-dm.org/dwyl/learn-json-web-tokens.svg)](https://david-dm.org/dwyl/learn-json-web-tokens)
-[![Node.js Version][node-version-image]][node-version-url]
+[![Build Status](https://img.shields.io/travis/dwyl/learn-json-web-tokens/master.svg?style=flat-square)](https://travis-ci.org/dwyl/learn-json-web-tokens)
+[![codecov.io](https://img.shields.io/codecov/c/github/dwyl/learn-json-web-tokens/master.svg?style=flat-square)](http://codecov.io/github/dwyl/learn-json-web-tokens?branch=master)
+[![Dependencies Status](https://david-dm.org/dwyl/learn-json-web-tokens/status.svg?style=flat-square)](https://david-dm.org/dwyl/learn-json-web-tokens)
+[![devDependencies Status](https://david-dm.org/dwyl/learn-json-web-tokens/dev-status.svg?style=flat-square)](https://david-dm.org/dwyl/learn-json-web-tokens?type=dev)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/dwyl/learn-json-web-tokens/issues)
+[![HitCount](http://hits.dwyl.io/dwyl/learn-json-web-tokens.svg)](http://hits.dwyl.io/dwyl/learn-json-web-tokens)
+
 
 ## *Why*?
 
@@ -398,19 +400,3 @@ If you found this quick guide useful, please star it on GitHub!
 and re-tweet to share it with others: https://twitter.com/olizilla/status/626487231860080640
 
 [![olizilla tweet](http://i.imgur.com/rCvNvvk.jpg)](https://twitter.com/olizilla/status/626487231860080640 "Please Re-Tweet!")
-
-
-[jsonwebtoken-icon]: https://nodei.co/npm/jsonwebtoken.png?downloads=true
-[jsonwebtoken-url]: https://npmjs.org/package/jsonwebtoken
-[npm-image]: https://img.shields.io/npm/v/esta.svg?style=flat
-[npm-url]: https://npmjs.org/package/esta
-[node-version-image]: https://img.shields.io/node/v/esta.svg?style=flat
-[node-version-url]: http://nodejs.org/download/
-[downloads-image]: https://img.shields.io/npm/dm/esta.svg?style=flat
-[downloads-url]: https://npmjs.org/package/esta
-[travis-image]: https://img.shields.io/travis/dwyl/learn-json-web-tokens.svg?style=flat
-[travis-url]: https://travis-ci.org/dwyl/learn-json-web-tokens
-[coveralls-image]: https://img.shields.io/coveralls/dwyl/learn-json-web-tokens.svg?style=flat
-[coveralls-url]: https://coveralls.io/r/dwyl/learn-json-web-tokens?branch=master
-[dependencies-url]: https://david-dm.org/dwyl/learn-json-web-tokens
-[dependencies-image]: https://david-dm.org/dwyl/learn-json-web-tokens.svg
