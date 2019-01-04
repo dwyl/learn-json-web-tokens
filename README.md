@@ -1,6 +1,6 @@
 ![JWT logo wider](http://i.imgur.com/qDOOu4o.jpg)
 
-# Learn how to use *JSON Web Tokens* (JWT) for much *Authentication* win!
+# Learn how to use *JSON Web Tokens* (JWT) for *Authentication*
 
 ![dilbert fixed the internet](http://i.imgur.com/cNElVof.jpg)
 
