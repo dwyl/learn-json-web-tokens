@@ -6,7 +6,8 @@
   "scripts": {
     "functional": "istanbul cover ./node_modules/tape/bin/tape ./example/test/functional.js | tap-spec",
     "coverage": "istanbul cover ./node_modules/tape/bin/tape ./example/test/functional.js && istanbul check-coverage --statements 100 --functions 100 --lines 100 --branches 100",
-    "test": "tape ./example/test/integration.js | tap-spec",
+    "spec": "tape ./example/test/integration.js | tap-spec",
+    "test": "istanbul cover ./node_modules/tape/bin/tape ./example/test/functional.js",
     "start": "node ./example/server.js",
     "jshint": "jshint -c .jshintrc --exclude-path .gitignore ."
   },
