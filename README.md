@@ -8,7 +8,7 @@ Learn how to use JSON Web Token (JWT) to *secure* your Web and/or Mobile Applica
 
 [![Build Status](https://img.shields.io/travis/dwyl/learn-json-web-tokens/master.svg?style=flat-square)](https://travis-ci.org/dwyl/learn-json-web-tokens)
 [![codecov.io](https://img.shields.io/codecov/c/github/dwyl/learn-json-web-tokens/master.svg?style=flat-square)](http://codecov.io/github/dwyl/learn-json-web-tokens?branch=master)
-[![codeclimate-maintainability](https://img.shields.io/codeclimate/maintainability/dwyl/learn-json-web-tokens.svg?style=flat-square)](https://github.com/dwyl/learn-json-web-tokens)
+[![codeclimate-maintainability](https://img.shields.io/codeclimate/maintainability/dwyl/learn-json-web-tokens.svg?style=flat-square)](https://codeclimate.com/github/dwyl/learn-json-web-tokens/maintainability)
 [![Dependencies Status](https://david-dm.org/dwyl/learn-json-web-tokens/status.svg?style=flat-square)](https://david-dm.org/dwyl/learn-json-web-tokens)
 [![devDependencies Status](https://david-dm.org/dwyl/learn-json-web-tokens/dev-status.svg?style=flat-square)](https://david-dm.org/dwyl/learn-json-web-tokens?type=dev)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/dwyl/learn-json-web-tokens/issues)
