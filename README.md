@@ -401,3 +401,12 @@ If you found this quick guide useful, please star it on GitHub!
 and re-tweet to share it with others: https://twitter.com/olizilla/status/626487231860080640
 
 [![olizilla tweet](http://i.imgur.com/rCvNvvk.jpg)](https://twitter.com/olizilla/status/626487231860080640 "Please Re-Tweet!")
+
+### Code Visualization:
+
+Here is a cool visualization of the code evolution
+
+ [![Watch the video](https://img.youtube.com/vi/Rj6qXEOV-6Q/0.jpg)](https://www.youtube.com/watch?v=Rj6qXEOV-6Q)
+
+ [https://www.youtube.com/watch?v=Rj6qXEOV-6Q](https://www.youtube.com/watch?v=Rj6qXEOV-6Q)
+
