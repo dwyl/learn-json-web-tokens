@@ -33,7 +33,7 @@ JSON Web Tokens (JWTs) 使得在服务之间（**包括在你 app 或者网站�
 
 示例：`https://www.yoursite.com/private-content/?token=eyJ0eXAiOiJKV1Qi.eyJrZXkiOi.eUiabuiKv`
 
-> **注意**：如果这对于你而言还不够“安全”，往下翻到“[***security***](https://github.com/dwyl/learn-json-web-tokens#q-if-i-put-the-jwt-in-the-url-or-header-is-it-secure)”这一节。
+> **注意**：如果这对于你而言还不够“安全”，往下翻到“[***security***](#q-我把-jwt-放在-url-或者-header-是安全的吗)”这一节。
 
 ### JWT **看起来**是什么样的？
 
