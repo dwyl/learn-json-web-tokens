@@ -1,6 +1,6 @@
 {
   "name": "learn-json-web-tokens",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A JSON Web Tokens Tutorial to secure your node.js apps!",
   "main": "server.js",
   "scripts": {
@@ -29,8 +29,8 @@
   },
   "homepage": "https://github.com/dwyl/learn-json-web-tokens",
   "dependencies": {
-    "jsonwebtoken": "^8.3.0",
-    "level": "^4.0.0"
+    "jsonwebtoken": "^8.5.1",
+    "level": "^5.0.1"
   },
   "devDependencies": {
     "istanbul": "^0.4.3",
