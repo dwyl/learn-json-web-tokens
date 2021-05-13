@@ -394,6 +394,7 @@ http://security.stackexchange.com/questions/49145/avoid-hitting-db-to-authentica
 + The Twelve-Factor App: http://12factor.net/ + http://12factor.net/processes
 + Auth in Hapi with JWT: https://medium.com/@thedon/auth-in-hapi-with-jwt-780ce4d072c7#.clgj5lknq
 + Token based authentication in Node.js with Passport, JWT and bcrypt: https://jonathas.com/token-based-authentication-in-nodejs-with-passport-jwt-and-bcrypt/
++ JWT Signing Algorithms: https://www.loginradius.com/blog/async/jwt-signing-algorithms/
 
 # *Thanks* for Learning with Us!
 
