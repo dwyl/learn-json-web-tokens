@@ -12,7 +12,7 @@ Learn how to use JSON Web Token (JWT) to *secure* your Web and/or Mobile Applica
 [![Dependencies Status](https://david-dm.org/dwyl/learn-json-web-tokens/status.svg?style=flat-square)](https://david-dm.org/dwyl/learn-json-web-tokens)
 [![devDependencies Status](https://david-dm.org/dwyl/learn-json-web-tokens/dev-status.svg?style=flat-square)](https://david-dm.org/dwyl/learn-json-web-tokens?type=dev)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/dwyl/learn-json-web-tokens/issues)
-[![HitCount](http://hits.dwyl.io/dwyl/learn-json-web-tokens.svg)](http://hits.dwyl.io/dwyl/learn-json-web-tokens)
+[![HitCount](https://hits.dwyl.com/dwyl/learn-json-web-tokens.svg)](https://hits.dwyl.io/dwyl/learn-json-web-tokens)
 
 
 ## *Why*?
