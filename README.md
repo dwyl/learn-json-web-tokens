@@ -1,13 +1,13 @@
-![JWT logo wider](http://i.imgur.com/qDOOu4o.jpg)
+![JWT logo wider](https://i.imgur.com/qDOOu4o.jpg)
 
 # Learn how to use *JSON Web Tokens* (JWT) for *Authentication*
 
-![dilbert fixed the internet](http://i.imgur.com/cNElVof.jpg)
+![dilbert fixed the internet](https://i.imgur.com/cNElVof.jpg)
 
 Learn how to use JSON Web Token (JWT) to *secure* your Web and/or Mobile Application!
 
 [![Build Status](https://img.shields.io/travis/dwyl/learn-json-web-tokens/master.svg?style=flat-square)](https://travis-ci.org/dwyl/learn-json-web-tokens)
-[![codecov.io](https://img.shields.io/codecov/c/github/dwyl/learn-json-web-tokens/master.svg?style=flat-square)](http://codecov.io/github/dwyl/learn-json-web-tokens?branch=master)
+[![codecov.io](https://img.shields.io/codecov/c/github/dwyl/learn-json-web-tokens/master.svg?style=flat-square)](https://codecov.io/github/dwyl/learn-json-web-tokens?branch=master)
 [![codeclimate-maintainability](https://img.shields.io/codeclimate/maintainability/dwyl/learn-json-web-tokens.svg?style=flat-square)](https://codeclimate.com/github/dwyl/learn-json-web-tokens/maintainability)
 [![Dependencies Status](https://david-dm.org/dwyl/learn-json-web-tokens/status.svg?style=flat-square)](https://david-dm.org/dwyl/learn-json-web-tokens)
 [![devDependencies Status](https://david-dm.org/dwyl/learn-json-web-tokens/dev-status.svg?style=flat-square)](https://david-dm.org/dwyl/learn-json-web-tokens?type=dev)
@@ -86,7 +86,7 @@ Claims are the predefined **keys** and their **values**:
 + **sub**: subject of the token (rarely used)
 + **aud**: audience of the token (also rarely used)
 
-See: http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html#RegisteredClaimName
+See: https://self-issued.info/docs/draft-ietf-oauth-json-web-token.html#RegisteredClaimName
 
 # Example [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/learn-json-web-tokens/issues)
 
@@ -174,7 +174,7 @@ The tests for both the server routes and helper functions are in: **/example/tes
 
 Please *read* through the tests and *tell us* if anything is unclear!
 **Note**: We wrote a basic "***mock***" of the http req/res objects see: /example/test/**mock.js**
-Confused/curious about Mocking? Read [When to Mock (by "Uncle Bob")](http://blog.8thlight.com/uncle-bob/2014/05/10/WhenToMock.html)
+Confused/curious about Mocking? Read [When to Mock (by "Uncle Bob")](https://blog.8thlight.com/uncle-bob/2014/05/10/WhenToMock.html)
 
 - - -
 
@@ -187,13 +187,13 @@ Confused/curious about Mocking? Read [When to Mock (by "Uncle Bob")](http://blog
 
 Good question! The *quick* **answer** is: ***No***.
 Unless you are using SSL/TLS (http**s** in your url) to encrypt the connection,
-sending the Token [***in-the-clear***](http://en.wikipedia.org/wiki/Plaintext)
+sending the Token [***in-the-clear***](https://en.wikipedia.org/wiki/Plaintext)
 is *always* going to be insecure (the token can be intercepted and re-used by a bad person...).
 A *naive* "*mitigation*" is to add *verifiable* "claims" to the token
 such as checking that the request came from the ***same browser*** (user-agent),
 **IP address** or more advanced
-"[**browser fingerprints**](http://stackoverflow.com/a/3287761/1148249)"
-... http://programmers.stackexchange.com/a/122385
+"[**browser fingerprints**](https://stackoverflow.com/a/3287761/1148249)"
+... https://programmers.stackexchange.com/a/122385
 
 The solution is to *either*:
 + use one-time-use (_single use_) tokens (_which expire after the link has been clicked_) ***or***
@@ -257,20 +257,20 @@ see: example/lib/helpers.js **validate** method for detail.
 Redis is the *scalable* way of storing your tokens.
 
 If you are *totally* new to Redis read:
-+ Intro: http://redis.io/topics/introduction
++ Intro: https://redis.io/topics/introduction
 + Redis in 30 mins:
-http://openmymind.net/2011/11/8/Redis-Zero-To-Master-In-30-Minutes-Part-1/
-+ What is Redis? http://www.slideshare.net/dvirsky/introduction-to-redis
+https://openmymind.net/2011/11/8/Redis-Zero-To-Master-In-30-Minutes-Part-1/
++ What is Redis? https://www.slideshare.net/dvirsky/introduction-to-redis
 
 Redis ***Scales*** (provided you have the RAM):
-http://stackoverflow.com/questions/10478794/more-than-4-billion-key-value-pairs-in-redis
+https://stackoverflow.com/questions/10478794/more-than-4-billion-key-value-pairs-in-redis
 
 > ***Get Started with Redis today***! [https://github.com/dwyl/**learn-redis**](https://github.com/dwyl/learn-redis)
 
 #### Memcache?
 
 ***Quick* answer**: *use **Redis***:
-http://stackoverflow.com/questions/10558465/memcache-vs-redis
+https://stackoverflow.com/questions/10558465/memcache-vs-redis
 
 
 ### Q: Returning Visitor (*no State Preservation between sessions*)
@@ -296,9 +296,9 @@ http://diveintohtml5.info/storage.html
 + MDN **Window.localStorage**:
 https://developer.mozilla.org/en-US/docs/Web/API/Window.localStorage
 + Brief description + basic *examples*:
-http://www.html5rocks.com/en/features/storage
+https://www.html5rocks.com/en/features/storage
 + Will it work for *my* visitors?
-http://caniuse.com/#search=localstorage
+https://caniuse.com/#search=localstorage
 (**Quick answer**: ***Yes***! IE 8 & above, Android 4.0+, IOS 7.1+, Chrome & Firefox )
 
 
@@ -312,7 +312,7 @@ retrieval system (e.g: Redis or SQLite for mobile apps) and send the token back 
 > "*Apologies if this is mentioned elsewhere. The private key used for signing the tokens, is this the same as a private key generated using ssh-keygen?*" ~ Originally asked by [@skota](https://github.com/skota) see: [dwyl/**hapi-auth-jwt2/issues**/48](https://github.com/dwyl/hapi-auth-jwt2/issues/48)
 
 
-Since JSON Web Tokens (JWT) do not have to be signed using [***asymmetric encryption***](http://en.wikipedia.org/wiki/Public-key_cryptography) you do not *have* to generate your secret key using ***ssh-keygen***. You can just as easily use a ***strong password*** e.g: https://www.grc.com/passwords.htm provided it's ***long and random***. The chance of collision (and thus someone being able to modify the payload, adding or modifying claims, and create a valid signature) is pretty low. And if you join two of those **Strong Passwords** (*strings*) together, you'll have a 128bit ASCII String. So the chances of collision are less than the [number of *atoms* in the universe](http://en.wikipedia.org/wiki/Observable_universe#Matter_content_.E2.80.94_number_of_atoms).
+Since JSON Web Tokens (JWT) do not have to be signed using [***asymmetric encryption***](https://en.wikipedia.org/wiki/Public-key_cryptography) you do not *have* to generate your secret key using ***ssh-keygen***. You can just as easily use a ***strong password*** e.g: https://www.grc.com/passwords.htm provided it's ***long and random***. The chance of collision (and thus someone being able to modify the payload, adding or modifying claims, and create a valid signature) is pretty low. And if you join two of those **Strong Passwords** (*strings*) together, you'll have a 128bit ASCII String. So the chances of collision are less than the [number of *atoms* in the universe](https://en.wikipedia.org/wiki/Observable_universe#Matter_content_.E2.80.94_number_of_atoms).
 
 To quickly and easily create a secret key using Node's crypto library, run this command.
 
@@ -330,7 +330,7 @@ The main thing you need to remember is: don't share the key with people who are 
 A search for "**JSON Web Token**" on NPM:
 https://www.npmjs.com/search?q=json+web+token yields ***many*** results!
 
-![npm search for json web token](http://i.imgur.com/ZLN3LlW.png)
+![npm search for json web token](https://i.imgur.com/ZLN3LlW.png)
 
 ### Building a Web App with Hapi.js?
 
@@ -359,39 +359,39 @@ https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32
 https://developer.atlassian.com/cloud/jira/platform/understanding-jwt/
 - Good intro (ruby-specific examples):
 http://www.intridea.com/blog/2013/11/7/json-web-token-the-useful-little-standard-you-haven-t-heard-about
-+ Friendlier introduction: http://jwt.io/
++ Friendlier introduction: https://jwt.io/
 + Getting to know JWT:
 https://scotch.io/tutorials/the-anatomy-of-a-json-web-token
 - Discussion: https://ask.auth0.com/c/jwt
 + ***How to*** do **stateless authentication** (session-less & cookie-less):
-http://stackoverflow.com/questions/20588467/how-to-do-stateless-session-less-cookie-less-authentication
+https://stackoverflow.com/questions/20588467/how-to-do-stateless-session-less-cookie-less-authentication
 
 
 ## Further Reading (_Recommended_) [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/learn-json-web-tokens/issues)
 
 + JWT with Passport.js:
-http://stackoverflow.com/questions/20228572/passport-local-with-node-jwt-simple
+https://stackoverflow.com/questions/20228572/passport-local-with-node-jwt-simple
 + JWT Tokens as API Keys:
 https://auth0.com/blog/2014/12/02/using-json-web-tokens-as-api-keys/
 + **10 Things you should know** about ***Tokens and Cookies***:
 https://auth0.com/blog/2014/01/27/ten-things-you-should-know-about-tokens-and-cookies/#xss-xsrf
 + Information Security discussion:
-http://security.stackexchange.com/questions/51294/json-web-tokens-jwt-as-user-identification-and-authentication-tokens
+https://security.stackexchange.com/questions/51294/json-web-tokens-jwt-as-user-identification-and-authentication-tokens
 + Using JWT with node.js (express + backbone):
-http://www.sitepoint.com/using-json-web-tokens-node-js/
+https://www.sitepoint.com/using-json-web-tokens-node-js/
 + Token-based Authentication with Socket.IO
 https://auth0.com/blog/2014/01/15/auth-with-socket-io/
 + JWT Auth *discussion* on Hacker News:
 https://news.ycombinator.com/item?id=7084435
 + The Spec but nicer:
-http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html
+https://self-issued.info/docs/draft-ietf-oauth-json-web-token.html
 + Extended (Wiki) article on Claims-based authentication:
-http://en.wikipedia.org/wiki/Claims-based_identity
+https://en.wikipedia.org/wiki/Claims-based_identity
 + Securing Requests with JWT:
-http://websec.io/2014/08/04/Securing-Requests-with-JWT.html
+https://websec.io/2014/08/04/Securing-Requests-with-JWT.html
 + Avoid Database in authenticating user for each request (stateless):
-http://security.stackexchange.com/questions/49145/avoid-hitting-db-to-authenticate-a-user-on-every-request-in-stateless-web-app-ar
-+ The Twelve-Factor App: http://12factor.net/ + http://12factor.net/processes
+https://security.stackexchange.com/questions/49145/avoid-hitting-db-to-authenticate-a-user-on-every-request-in-stateless-web-app-ar
++ The Twelve-Factor App: https://12factor.net/ + https://12factor.net/processes
 + Auth in Hapi with JWT: https://medium.com/@thedon/auth-in-hapi-with-jwt-780ce4d072c7#.clgj5lknq
 + Token based authentication in Node.js with Passport, JWT and bcrypt: https://jonathas.com/token-based-authentication-in-nodejs-with-passport-jwt-and-bcrypt/
 + JWT Signing Algorithms: https://www.loginradius.com/blog/async/jwt-signing-algorithms/
@@ -401,4 +401,4 @@ http://security.stackexchange.com/questions/49145/avoid-hitting-db-to-authentica
 If you found this quick guide useful, please star it on GitHub!
 and re-tweet to share it with others: https://twitter.com/olizilla/status/626487231860080640
 
-[![olizilla tweet](http://i.imgur.com/rCvNvvk.jpg)](https://twitter.com/olizilla/status/626487231860080640 "Please Re-Tweet!")
+[![olizilla tweet](https://i.imgur.com/rCvNvvk.jpg)](https://twitter.com/olizilla/status/626487231860080640 "Please Re-Tweet!")
