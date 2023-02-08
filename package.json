@@ -7,7 +7,7 @@
     "functional": "istanbul cover ./node_modules/tape/bin/tape ./example/test/functional.js | tap-spec",
     "coverage": "istanbul cover ./node_modules/tape/bin/tape ./example/test/functional.js && istanbul check-coverage --statements 100 --functions 100 --lines 100 --branches 100",
     "spec": "tape ./example/test/integration.js | tap-spec",
-    "test": "istanbul cover ./node_modules/tape/bin/tape ./example/test/functional.js",
+    "test": "nyc tape ./example/test/functional.js | tap-nyc",
     "start": "node ./example/server.js",
     "jshint": "jshint -c .jshintrc --exclude-path .gitignore ."
   },
@@ -29,19 +29,19 @@
   },
   "homepage": "https://github.com/dwyl/learn-json-web-tokens",
   "dependencies": {
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "level": "^5.0.1"
   },
   "devDependencies": {
-    "istanbul": "^0.4.3",
     "jshint": "^2.8.0",
-    "pre-commit": "^1.0.10",
     "request": "^2.60.0",
-    "tap-spec": "^5.0.0",
-    "tape": "^4.0.1"
+    "nyc": "^15.1.0",
+    "pre-commit": "^1.2.2",
+    "tap-nyc": "^1.0.3",
+    "tape": "^5.0.1"
   },
   "engines": {
-    "node": ">= 6"
+    "node": ">= 16"
   },
   "pre-commit": [
     "jshint",
