@@ -1,18 +1,20 @@
+<div align="ceter"
+>
 ![JWT logo wider](https://i.imgur.com/qDOOu4o.jpg)
 
-# Learn how to use *JSON Web Tokens* (JWT) for *Authentication*
+# Learn how to use *JSON Web Tokens* (JWT) for *Auth*.
 
 ![dilbert fixed the internet](https://i.imgur.com/cNElVof.jpg)
 
 Learn how to use JSON Web Token (JWT) to *secure* your Web and/or Mobile Application!
 
-[![Build Status](https://img.shields.io/travis/dwyl/learn-json-web-tokens/master.svg?style=flat-square)](https://travis-ci.org/dwyl/learn-json-web-tokens)
-[![codecov.io](https://img.shields.io/codecov/c/github/dwyl/learn-json-web-tokens/master.svg?style=flat-square)](https://codecov.io/github/dwyl/learn-json-web-tokens?branch=master)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/dwyl/learn-json-web-tokens/Node.js%20CI?style=flat-square)](https://github.com/dwyl/learn-json-web-tokens/actions)
+[![codecov.io](https://img.shields.io/codecov/c/github/dwyl/learn-json-web-tokens/master.svg?style=flat-square)](https://codecov.io/github/dwyl/learn-json-web-tokens?branch=main)
 [![codeclimate-maintainability](https://img.shields.io/codeclimate/maintainability/dwyl/learn-json-web-tokens.svg?style=flat-square)](https://codeclimate.com/github/dwyl/learn-json-web-tokens/maintainability)
-[![Dependencies Status](https://david-dm.org/dwyl/learn-json-web-tokens/status.svg?style=flat-square)](https://david-dm.org/dwyl/learn-json-web-tokens)
-[![devDependencies Status](https://david-dm.org/dwyl/learn-json-web-tokens/dev-status.svg?style=flat-square)](https://david-dm.org/dwyl/learn-json-web-tokens?type=dev)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/dwyl/learn-json-web-tokens/issues)
 [![HitCount](https://hits.dwyl.com/dwyl/learn-json-web-tokens.svg)](https://hits.dwyl.io/dwyl/learn-json-web-tokens)
+
+</div>
 
 
 ## *Why*?
@@ -81,8 +83,8 @@ Claims are the predefined **keys** and their **values**:
 + **iss**: issuer of the token
 + **exp**: the expiration timestamp (reject tokens which have expired). Note: as defined in the spec, this must be in seconds.
 + **iat**: The time the JWT was issued. Can be used to determine the age of the JWT
-+ **nbf**: "not before" is a future time when the token will become active.
 + **jti**: unique identifier for the JWT. Used to prevent the JWT from being re-used or replayed.
++ **nbf**: "not before" is a future time when the token will become active. (optional)
 + **sub**: subject of the token (rarely used)
 + **aud**: audience of the token (also rarely used)
 
@@ -162,9 +164,9 @@ its pretty safe to compute them synchronously.
 
 > Tip: If you're looking for a ***Full Featured*** **JWT Auth Hapi.js plugin** (which does the verification/validation *asynchronously*) for your Hapi.js-based app please check out: [https://github.com/**dwyl/hapi-auth-jwt2**](https://github.com/dwyl/hapi-auth-jwt2)
 
-## Tests
+## Tests 
 
-You may have noticed the [![Build Status][travis-image]][travis-url] badge at the *start* of this tutorial.
+You may have noticed the [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/dwyl/learn-json-web-tokens/Node.js%20CI?style=flat-square)](https://github.com/dwyl/learn-json-web-tokens/actions) badge at the *start* of this tutorial.
 This is a sign the author(s) are not just *cobbling* code together.
 The tests for both the server routes and helper functions are in: **/example/test**
 

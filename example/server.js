@@ -1,6 +1,6 @@
 var port = process.env.PORT || 1337; // let heroku define port or use 1337
 var http = require('http');          // core node.js http (no frameworks)
-var url = require('url');            // core node.js url (no frameworks)
+var url  = require('url');           // core node.js url (no frameworks)
 var app  = require('./lib/helpers'); // auth, token verification & render helpers
 var c    = function(res){ /*  */ };
 
@@ -14,4 +14,4 @@ http.createServer(function (req, res) {
   else                          { app.notFound(res);                } // 404 error
 }).listen(port);
 
-console.log("Visit: http://127.0.0.1:" + port);
+console.info("Visit: http://127.0.0.1:" + port);
