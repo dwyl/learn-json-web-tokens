@@ -1,11 +1,11 @@
-const port = process.env.PORT || 1337; // let heroku define port or use 1337
-const http = require('http');          // core node.js http (no frameworks)
-const url  = require('url');           // core node.js url (no frameworks)
-const app  = require('./lib/helpers'); // auth, token verification & render helpers
-const c    = function(res){ /*  */ };
+var port = process.env.PORT || 1337; // let heroku define port or use 1337
+var http = require('http');          // core node.js http (no frameworks)
+var url  = require('url');           // core node.js url (no frameworks)
+var app  = require('./lib/helpers'); // auth, token verification & render helpers
+var c    = function(res){ /*  */ };
 
 http.createServer(function (req, res) {
-  const path = url.parse(req.url).pathname;
+  var path = url.parse(req.url).pathname;
   if( path === '/' || path === '/home' ) { app.home(res);           } // homepage
   else if( path === '/auth')    { app.handler(req, res);            } // authenticator
   else if( path === '/private') { app.validate(req, res, app.done); } // private content

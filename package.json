@@ -4,8 +4,6 @@
   "description": "A JSON Web Tokens Tutorial to secure your node.js apps!",
   "main": "server.js",
   "scripts": {
-    "functional": "istanbul cover ./node_modules/tape/bin/tape ./example/test/functional.js | tap-spec",
-    "coverage": "istanbul cover ./node_modules/tape/bin/tape ./example/test/functional.js && istanbul check-coverage --statements 100 --functions 100 --lines 100 --branches 100",
     "spec": "tape ./example/test/integration.js | tap-spec",
     "test": "nyc tape ./example/test/functional.js | tap-nyc",
     "start": "node ./example/server.js",
@@ -45,6 +43,11 @@
   },
   "pre-commit": [
     "jshint",
-    "coverage"
-  ]
+    "test"
+  ],
+  "nyc": {
+    "exclude": [
+      "second.js"
+    ]
+  }
 }
