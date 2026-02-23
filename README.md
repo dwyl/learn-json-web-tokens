@@ -86,7 +86,7 @@ Claims are the predefined **keys** and their **values**:
 + **sub**: subject of the token (rarely used)
 + **aud**: audience of the token (also rarely used)
 
-See: https://self-issued.info/docs/draft-ietf-oauth-json-web-token.html#RegisteredClaimName
+See: https://tools.ietf.org/html/rfc7519#section-4.1
 
 # Example [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/learn-json-web-tokens/issues)
 
@@ -353,8 +353,8 @@ by our friend [@joaquimserafim](https://github.com/joaquimserafim)
 
 ## Essential Reading (_Background_)
 
-- Original **Specification** (Draft):
-https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32
+- Official **Specification** (RFC 7519):
+https://tools.ietf.org/html/rfc7519
 - Great overview from Atlassian:
 https://developer.atlassian.com/cloud/jira/platform/understanding-jwt/
 - Good intro (ruby-specific examples):
@@ -384,7 +384,7 @@ https://auth0.com/blog/2014/01/15/auth-with-socket-io/
 + JWT Auth *discussion* on Hacker News:
 https://news.ycombinator.com/item?id=7084435
 + The Spec but nicer:
-https://self-issued.info/docs/draft-ietf-oauth-json-web-token.html
+https://jwt.io/introduction
 + Extended (Wiki) article on Claims-based authentication:
 https://en.wikipedia.org/wiki/Claims-based_identity
 + Securing Requests with JWT:
