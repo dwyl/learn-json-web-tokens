@@ -384,7 +384,7 @@ https://auth0.com/blog/2014/01/15/auth-with-socket-io/
 + JWT Auth *discussion* on Hacker News:
 https://news.ycombinator.com/item?id=7084435
 + The Spec but nicer:
-https://jwt.io/introduction
+https://self-issued.info/docs/draft-ietf-oauth-json-web-token.html
 + Extended (Wiki) article on Claims-based authentication:
 https://en.wikipedia.org/wiki/Claims-based_identity
 + Securing Requests with JWT:
