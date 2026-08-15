@@ -388,7 +388,7 @@ https://self-issued.info/docs/draft-ietf-oauth-json-web-token.html
 + Extended (Wiki) article on Claims-based authentication:
 https://en.wikipedia.org/wiki/Claims-based_identity
 + Securing Requests with JWT:
-https://websec.io/2014/08/04/Securing-Requests-with-JWT.html
+https://web.archive.org/web/20240918103054/https://www.websec.io/2014/08/04/Securing-Requests-with-JWT.html
 + Avoid Database in authenticating user for each request (stateless):
 https://security.stackexchange.com/questions/49145/avoid-hitting-db-to-authenticate-a-user-on-every-request-in-stateless-web-app-ar
 + The Twelve-Factor App: https://12factor.net/ + https://12factor.net/processes
