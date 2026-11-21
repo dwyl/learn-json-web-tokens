@@ -1,5 +1,0 @@
-language: node_js
-node_js:
-  - "node"
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
